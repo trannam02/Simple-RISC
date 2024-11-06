@@ -1,0 +1,51 @@
+$date
+	Thu Oct  3 22:32:58 2024
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ns
+$end
+$scope module muxNbits_tb $end
+$var wire 5 ! out [4:0] $end
+$var reg 5 " in_0 [4:0] $end
+$var reg 5 # in_1 [4:0] $end
+$var reg 1 $ sel $end
+$scope module mux5 $end
+$var wire 5 % in_0 [4:0] $end
+$var wire 5 & in_1 [4:0] $end
+$var wire 1 $ sel $end
+$var wire 5 ' out [4:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b0 '
+b11111 &
+b0 %
+0$
+b11111 #
+b0 "
+b0 !
+$end
+#10
+b11111 !
+b11111 '
+1$
+#20
+b1 !
+b1 '
+b1 "
+b1 %
+0$
+#30
+b10 !
+b10 '
+b0 "
+b0 %
+b10 #
+b10 &
+1$
+#40
