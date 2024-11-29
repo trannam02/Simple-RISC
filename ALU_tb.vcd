@@ -1,0 +1,111 @@
+$date
+	Thu Nov 28 15:38:12 2024
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module ALU_tb $end
+$var wire 8 ! result [7:0] $end
+$var wire 1 " is_zero $end
+$var reg 8 # inA [7:0] $end
+$var reg 8 $ inB [7:0] $end
+$var reg 3 % opcode [2:0] $end
+$scope module uut $end
+$var wire 8 & inA [7:0] $end
+$var wire 8 ' inB [7:0] $end
+$var wire 3 ( opcode [2:0] $end
+$var reg 1 " is_zero $end
+$var reg 8 ) result [7:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b0 )
+b0 (
+b0 '
+b0 &
+b0 %
+b0 $
+b0 #
+1"
+b0 !
+$end
+#10000
+b1 %
+b1 (
+#20000
+b1 $
+b1 '
+b1 #
+b1 &
+#30000
+0"
+b1111 !
+b1111 )
+b1010 $
+b1010 '
+b101 #
+b101 &
+b10 %
+b10 (
+#40000
+b1 !
+b1 )
+b11 $
+b11 '
+b11 %
+b11 (
+#45000
+1"
+b0 !
+b0 )
+b100 #
+b100 &
+#50000
+0"
+b110 !
+b110 )
+b101 #
+b101 &
+b100 %
+b100 (
+#60000
+b1111 !
+b1111 )
+b1111 $
+b1111 '
+b0 #
+b0 &
+b101 %
+b101 (
+#70000
+b10100 !
+b10100 )
+b0 $
+b0 '
+b10100 #
+b10100 &
+b110 %
+b110 (
+#80000
+b11001 !
+b11001 )
+b11001 #
+b11001 &
+b111 %
+b111 (
+#90000
+1"
+b0 !
+b0 )
+b11111111 $
+b11111111 '
+b1 #
+b1 &
+b10 %
+b10 (
+#100000
