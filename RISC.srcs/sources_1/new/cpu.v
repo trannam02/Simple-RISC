@@ -29,11 +29,21 @@ module cpu(
 wire [4:0] counter_2_pc, pc_2_address_mux, AR_2_alu;
 wire [4:0] address_mux_2_mem, result_reg_2_acc_mux;
 
-wire [7:0] mem_in_out, alu_2_result_reg, IR_out;
+wire [7:0] mem_in_out, alu_2_result_reg, IR_out, acc_mux_2_AR;
+
+wire alu_is_zero_2_control;
 
 // control signal wire
 wire sig_stop, sig_addr_mux, sig_enable_mem, sig_rw_mem, sig_ar_mux, sig_ar_load, sig_is_jump;
 wire [1:0] sig_alu_op;
+// EX signal wire
+wire sig_ex_addr_mux, sig_ex_rw_mem;
+wire [1:0] sig_ex_alu_op;
+wire sig_ex_stop, sig_ex_enable_mem, sig_ex_ar_mux, sig_ex_ar_load, sig_ex_is_jump;
+// WB signal wire
+wire sig_wb_ar_mux,sig_wb_ar_load;
+
+
 
 counterNbits COUNTER(
     .out(counter_2_pc),
@@ -109,6 +119,22 @@ registerNbits #(.N(8)) REG_INS ( // ACCUMULATOR REG
     .rst(reset),
     .load(1'b1), // instead of sig_is_jump
     .in(mem_in_out)
+);
+
+registerNbits_neg #(.N(6)) REG_CONTROL_EX ( // RESULT REG // have not modified yet
+    .out({sig_ex_addr_mux, sig_ex_rw_mem, sig_ex_ar_mux, sig_ex_ar_load, sig_ex_alu_op}),
+    .clk(clock),
+    .rst(reset),
+    .load(1'b1),
+    .in({sig_addr_mux,sig_rw_mem,sig_ar_mux, sig_ar_load, sig_alu_op})
+);
+
+registerNbits_neg #(.N(6)) REG_CONTROL_WB ( // RESULT REG // have not modified yet
+    .out({sig_wb_ar_mux, sig_wb_ar_load}),
+    .clk(clock),
+    .rst(reset),
+    .load(1'b1),
+    .in({sig_ex_ar_mux, sig_ex_ar_load})
 );
 
 Controller CONTROLLER (
