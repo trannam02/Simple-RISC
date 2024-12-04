@@ -34,11 +34,13 @@ wire alu_is_zero_2_control;
 
 // control signal wire
 wire sig_stop, sig_addr_mux, sig_enable_mem, sig_rw_mem, sig_ar_mux, sig_ar_load, sig_is_jump;
-wire [1:0] sig_alu_op;
+wire [2:0] sig_alu_op;
+
 // EX signal wire
 wire sig_ex_addr_mux, sig_ex_rw_mem;
 wire [1:0] sig_ex_alu_op;
 wire sig_ex_stop, sig_ex_enable_mem, sig_ex_ar_mux, sig_ex_ar_load, sig_ex_is_jump;
+
 // WB signal wire
 wire sig_wb_ar_mux,sig_wb_ar_load;
 

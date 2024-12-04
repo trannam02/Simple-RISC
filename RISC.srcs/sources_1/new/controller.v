@@ -18,9 +18,9 @@ module Controller(
 
 
 
-localparam ADD = 2'b011;
-localparam AND = 2'b010;
-localparam XOR = 2'b100;
+localparam ADD = 3'b011;
+localparam AND = 3'b010;
+localparam XOR = 3'b100;
 
 always @(posedge clk or posedge rst) begin
 	if (rst) begin
