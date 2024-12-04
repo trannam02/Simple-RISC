@@ -25,7 +25,6 @@ module cpu(
     input reset
 );
 
-
 wire [4:0] counter_2_pc, pc_2_address_mux, AR_2_alu;
 wire [4:0] address_mux_2_mem, result_reg_2_acc_mux;
 
@@ -44,12 +43,11 @@ wire sig_ex_stop, sig_ex_enable_mem, sig_ex_ar_mux, sig_ex_ar_load, sig_ex_is_ju
 wire sig_wb_ar_mux,sig_wb_ar_load;
 
 
-
 counterNbits COUNTER(
     .out(counter_2_pc),
     .clk(clock),
     .rst(reset),
-    .load(),
+    .load(sig_is_jump),
     .preset(IR_out[4:0])
 );
 
@@ -144,7 +142,7 @@ Controller CONTROLLER (
 	.enable_mem(sig_enable_mem),
 	.rw_mem(sig_rw_mem),	
 	.ar_mux(sig_ar_mux),
-	.ar_load(sig_ar_load), 
+	.ar_load(sig_ar_load),
 	.is_jump(sig_is_jump),
     .clk(clock),
 	.rst(reset),
