@@ -1,0 +1,4 @@
+hlt
+add 0x14
+skz
+jmp 0x0A
