@@ -9,9 +9,10 @@ int main(const int argc,char* argv[]){
     };
     vector<string> lines;
     vector<unsigned char> instructions;
-
+    vector<unsigned char> datas = {1,2,3,4};
     readFile(argv[1], lines);
     parserLines(lines, instructions);
-
+    writeFile("output.mem", instructions, datas);
+    cout << "Done. Output filename: output.mem" << endl;
     return 0;
 }

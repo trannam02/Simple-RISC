@@ -1,7 +1,5 @@
 #include "./../headers/utils.h"
-
-
-
+#include <sstream>
 void readFile(char * fileName, vector<string> & lines) {
     string line;
     fstream file;
@@ -16,6 +14,22 @@ void readFile(char * fileName, vector<string> & lines) {
     };
 };
 
+void writeFile(char * fileName, vector<unsigned char> & instructions, vector<unsigned char>& datas){
+    fstream file;
+    stringstream ss;
+    string test;
+    file.open(fileName, ios_base::out);
+    for(int i = 0; i < instructions.size(); i++){
+        file << ith(instructions[i], 2) << endl;
+    };
+    for(int i = instructions.size(); i < 28; i++){
+        file << ith(0, 2) << endl;
+    };
+    for(int i = 0; i < datas.size(); i++){
+        file << ith(datas[i], 2) << endl;
+    };
+    file.close();
+};
 void clearSpace(string& s) {
     int start = -1;
     int end = -1;

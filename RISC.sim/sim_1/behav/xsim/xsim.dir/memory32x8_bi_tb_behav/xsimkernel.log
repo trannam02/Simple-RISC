@@ -1,7 +1,0 @@
-Running: xsim.dir/memory32x8_bi_tb_behav/xsimk.exe -simmode gui -wdb memory32x8_bi_tb_behav.wdb -simrunnum 0 -socket 60974
-Design successfully loaded
-Design Loading Memory Usage: 7272 KB (Peak: 7272 KB)
-Design Loading CPU Usage: 0 ms
-Simulation completed
-Simulation Memory Usage: 7916 KB (Peak: 7916 KB)
-Simulation CPU Usage: 0 ms
