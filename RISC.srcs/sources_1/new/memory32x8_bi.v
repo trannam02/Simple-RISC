@@ -13,6 +13,10 @@ module memory32x8_bi
 reg [7:0] memory [31:0];
 reg [7:0] data_out;
 
+initial begin
+$readmemh("output.mem", memory);
+end;
+
 assign data = (en & !rw) ? (data_out) : 8'bz;
 
 always @(posedge clk) begin

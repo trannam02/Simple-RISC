@@ -21,8 +21,7 @@
 
 
 module cpu(
-    input clock,
-    input reset
+    input clock
 );
 
 wire [4:0] counter_2_pc, pc_2_address_mux, AR_2_alu;

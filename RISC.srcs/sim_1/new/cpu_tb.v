@@ -36,5 +36,5 @@ end;
 initial begin
     #100 $finish;
 end;
-cpu MY_CPU (.clock(clock), .reset(1'b0));
+cpu MY_CPU (.clock(clock));
 endmodule

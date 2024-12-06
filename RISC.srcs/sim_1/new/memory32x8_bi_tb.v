@@ -25,7 +25,7 @@ initial begin
     #3 {en, rw, addr, input_data} = 15'b1_0_00001_00000000;
     #20 {en, rw, addr, input_data} = 15'b1_0_00010_00000000;
     #20 {en, rw, addr, input_data} = 15'b1_0_00001_00000000;
-    
+    #20 {en, rw, addr, input_data} = 15'b1_0_11111_00000000;
     #10
     $finish;
 end

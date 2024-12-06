@@ -2,3 +2,6 @@ RISC.cache/
 RISC.hw/
 RISC.ip_user_files/
 RISC.xpr
+RISC.runs/
+copyCode/
+assembler/build/
