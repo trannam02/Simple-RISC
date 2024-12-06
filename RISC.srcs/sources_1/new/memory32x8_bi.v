@@ -14,16 +14,15 @@ reg [7:0] memory [31:0];
 reg [7:0] data_out;
 
 initial begin
-$readmemh("output.mem", memory);
+$readmemh("D:/DATKLL/test/Simple-RISC/assembler/output.mem", memory);
 end;
 
-assign data = (en & !rw) ? (data_out) : 8'bz;
+assign data = (!rw) ? (data_out) : 8'bz;
 
 always @(posedge clk) begin
-    if(en)
-        if(!rw)
-            data_out <= memory[addr];
-        else if(rw)
-            memory[addr] <= data; 
+    if(!rw)
+        data_out <= memory[addr];
+    else if(rw)
+        memory[addr] <= data; 
 end
 endmodule

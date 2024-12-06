@@ -11,12 +11,13 @@ module Controller(
 	output reg ar_mux,
 	output reg ar_load, 
 	output reg is_jump,
+	output reg ir_load
 	// reg skip va check_zero chi su dung noi bo de o day de quan sat duoc khi simulator
-	output reg skip,
-	output reg check_zero
+
 );
 
-
+reg skip;
+reg check_zero;
 
 localparam ADD = 3'b011;
 localparam AND = 3'b010;
@@ -32,6 +33,20 @@ always @(posedge clk or posedge rst) begin
 		ar_mux <= 1'b0;
 		ar_load <= 1'b0;
 		is_jump <= 1'b0;
+		ir_load <= 1'b1;
+		skip <= 1'b0;
+		check_zero <= 1'b0;
+	end else if (stop) begin
+		// stop and do nothing
+		stop <= 1'b1; // continue stop program
+		alu_op <= 2'b000;
+		addr_mux <= 1'b0;
+		enable_mem <= 1'b0;
+		rw_mem <= 1'b0;
+		ar_mux <= 1'b0;
+		ar_load <= 1'b0;
+		is_jump <= 1'b0;
+		ir_load <= 1'b1;
 		skip <= 1'b0;
 		check_zero <= 1'b0;
 	end else if (skip) begin // bo qua lenh hien tai
@@ -43,6 +58,7 @@ always @(posedge clk or posedge rst) begin
 		ar_mux <= 1'b0;
 		ar_load <= 1'b0;
 		is_jump <= 1'b0;
+		ir_load <= 1'b1;
 		skip <= 1'b0;
 		check_zero <= 1'b0;
 	end else begin
@@ -57,6 +73,7 @@ always @(posedge clk or posedge rst) begin
 				ar_mux <= 1'b0;
 				ar_load <= 1'b0;
 				is_jump <= 1'b0;
+				ir_load <= 1'b1;
 				skip <= 1'b0;
 				check_zero <= 1'b0;
 			end
@@ -69,6 +86,7 @@ always @(posedge clk or posedge rst) begin
 				ar_mux <= 1'b0;
 				ar_load <= 1'b0;
 				is_jump <= 1'b0;
+				ir_load <= 1'b1;
 				skip <= 1'b0;
 				check_zero <= 1'b1; // kich hoat kiem tra alu
 			end
@@ -81,6 +99,7 @@ always @(posedge clk or posedge rst) begin
 				ar_mux <= 1'b0;   // ghi gia tri tu alu vao acc
 				ar_load <= 1'b1; // ghi vao acc
 				is_jump <= 1'b0;
+				ir_load <= 1'b0;
 				skip <= 1'b0;
 				check_zero <= 1'b0;
 			end
@@ -93,6 +112,7 @@ always @(posedge clk or posedge rst) begin
 				ar_mux <= 1'b0; // ghi gia tri tu alu vao acc
 				ar_load <= 1'b1; // ghi vao acc 
 				is_jump <= 1'b0; 
+				ir_load <= 1'b0;
 				skip <= 1'b0;
 				check_zero <= 1'b0;
 			end
@@ -105,6 +125,8 @@ always @(posedge clk or posedge rst) begin
 				ar_mux <= 1'b0; // ghi gia tri tu alu vao acc
 				ar_load <= 1'b1; // ghi vao acc 
 				is_jump <= 1'b0;
+				ir_load <= 1'b0;
+				ir_load <= 1'b0;
 				skip <= 1'b0;
 				check_zero <= 1'b0;
 			end
@@ -117,6 +139,7 @@ always @(posedge clk or posedge rst) begin
 				ar_mux <= 1'b1; // ghi gia tri tu mem vao acc
 				ar_load <= 1'b1; // ghi vao acc
 				is_jump <= 1'b0;
+				ir_load <= 1'b0;
 				skip <= 1'b0;
 				check_zero <= 1'b0;
 			end
@@ -129,6 +152,7 @@ always @(posedge clk or posedge rst) begin
 				ar_mux <= 1'b0;
 				ar_load <= 1'b0;
 				is_jump <= 1'b0;
+				ir_load <= 1'b0;
 				skip <= 1'b0;
 				check_zero <= 1'b0;
 			end
@@ -141,6 +165,7 @@ always @(posedge clk or posedge rst) begin
 				ar_mux <= 1'b0;
 				ar_load <= 1'b0;
 				is_jump <= 1'b1; // kich hoat jump
+				ir_load <= 1'b1;
 				skip <= 1'b1; // skip lenh tiep theo 
 				check_zero <= 1'b0;
 			end
@@ -153,6 +178,7 @@ always @(posedge clk or posedge rst) begin
 				ar_mux <= 1'b0;
 				ar_load <= 1'b0;
 				is_jump <= 1'b0;
+				ir_load <= 1'b1;
 				skip <= 1'b0;
 				check_zero <= 1'b0;
 			end

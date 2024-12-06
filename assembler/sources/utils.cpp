@@ -14,7 +14,7 @@ void readFile(char * fileName, vector<string> & lines) {
     };
 };
 
-void writeFile(char * fileName, vector<unsigned char> & instructions, vector<unsigned char>& datas){
+void writeFile(const char * fileName, vector<unsigned char> & instructions, vector<unsigned char>& datas){
     fstream file;
     stringstream ss;
     string test;
