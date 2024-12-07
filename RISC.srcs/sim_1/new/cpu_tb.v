@@ -28,7 +28,7 @@ module cpu_tb;
     wire [4:0] address_mux_2_mem;
     wire sig_stop;
     wire [2:0] sig_alu_op;
-    wire sig_addr_mux, sig_rw_mem, sig_ar_mux, sig_ar_load, sig_ir_load;
+    wire sig_addr_mux, sig_rw_mem, sig_ar_mux, sig_ar_load, sig_ir_load, stall, sig_ex_ir_load;
 
     initial begin
         clock = 1'b0;
@@ -55,6 +55,8 @@ module cpu_tb;
         .sig_ar_mux(sig_ar_mux), 
         .sig_ar_load(sig_ar_load),
         .mem_in_out(mem_in_out),
-        .sig_ir_load(sig_ir_load)
+        .sig_ir_load(sig_ir_load),
+        .stall(stall),
+        .sig_ex_ir_load(sig_ex_ir_load)
     );
 endmodule

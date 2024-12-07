@@ -29,15 +29,15 @@ module cpu(
     output sig_stop,
     output [2:0] sig_alu_op,
     output sig_addr_mux, sig_rw_mem, sig_ar_mux, sig_ar_load,
-    output sig_ir_load
+    output sig_ir_load,
+    output stall,
+    output sig_ex_ir_load
 );
 
 
+wire [4:0] counter_2_pc, pc_2_address_mux;
 
-wire [4:0] counter_2_pc, pc_2_address_mux, AR_2_alu;
-wire [4:0] result_reg_2_acc_mux;
-
-wire [7:0] alu_2_result_reg, acc_mux_2_AR;
+wire [7:0] alu_2_result_reg, acc_mux_2_AR, AR_2_alu, result_reg_2_acc_mux;
 
 wire alu_is_zero_2_control;
 
@@ -46,7 +46,7 @@ wire sig_enable_mem;
 
 
 // EX signal wire
-wire sig_ex_addr_mux, sig_ex_rw_mem, sig_ex_ir_load; 
+wire sig_ex_addr_mux, sig_ex_rw_mem;
 wire [1:0] sig_ex_alu_op;
 wire sig_ex_stop, sig_ex_enable_mem, sig_ex_ar_mux, sig_ex_ar_load, sig_ex_is_jump;
 
@@ -64,7 +64,8 @@ counterNbits COUNTER(
     .rst(reset),
     .stop(sig_stop),
     .load(sig_is_jump),
-    .preset(IR_out[4:0])
+    .preset(IR_out[4:0]),
+    .stall(sig_ir_load)
 );
 
 registerNbits_neg #(.N(5)) REG_PC ( // PROGRAM COUNTER
@@ -132,7 +133,8 @@ registerNbits_asyn #(.N(8)) REG_INS ( // INSTRUCTION REG
     .clk(gated_clock),
     .rst(reset),
     .load(sig_ex_ir_load), // instead of sig_is_jump
-    .in(mem_in_out)
+    .in(mem_in_out),
+    .stall(stall)
 );
 
 registerNbits_neg #(.N(7)) REG_CONTROL_EX ( // RESULT REG // have not modified yet
@@ -172,7 +174,8 @@ Controller CONTROLLER (
 	.rst(reset),
 	.opcode(IR_out[7:5]), 
 	.is_zero(alu_is_zero_2_control),
-    .ir_load(sig_ir_load)
+    .ir_load(sig_ir_load),
+    .stall(stall)
 );
 
 

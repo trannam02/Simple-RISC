@@ -9,7 +9,8 @@ module registerNbits_asyn
 )(
     input [N-1:0] in,
     input clk, rst, load,
-    output reg [N-1:0] out
+    output reg [N-1:0] out,
+    output reg stall
 );
 
 always @(posedge rst) begin
@@ -19,5 +20,12 @@ end
 always @(in, load) begin
     if(load && !rst)
         out <= in;
+end
+
+always @(posedge clk) begin
+    if(!load)
+        stall <= 1'b1;
+    else if(load)
+        stall <= 1'b0;
 end
 endmodule

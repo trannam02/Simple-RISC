@@ -9,7 +9,7 @@ module registerNbits
 )(
     input [N-1:0] in,
     input clk, rst, load,
-    output reg [N-1:0] out
+    output reg [N-1:0] out = 0
 );
 
 always @(posedge clk) begin

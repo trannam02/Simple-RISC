@@ -3,6 +3,7 @@ module Controller(
 	input rst,
 	input [2:0] opcode, 
 	input is_zero,
+	input stall,
 	output reg stop,
 	output reg [2:0] alu_op,
 	output reg addr_mux,
@@ -50,6 +51,18 @@ always @(posedge clk or posedge rst) begin
 		skip <= 1'b0;
 		check_zero <= 1'b0;
 	end else if (skip) begin // bo qua lenh hien tai
+		stop <= 1'b0;
+		alu_op <= 2'b000;
+		addr_mux <= 1'b0;
+		enable_mem <= 1'b0;
+		rw_mem <= 1'b0;
+		ar_mux <= 1'b0;
+		ar_load <= 1'b0;
+		is_jump <= 1'b0;
+		ir_load <= 1'b1;
+		skip <= 1'b0;
+		check_zero <= 1'b0;
+	end else if (stall) begin	
 		stop <= 1'b0;
 		alu_op <= 2'b000;
 		addr_mux <= 1'b0;
