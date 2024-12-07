@@ -15,7 +15,7 @@ reg [7:0] data_out;
 
 initial begin
 $readmemh("output.mem", memory);
-end;
+end
 
 assign data = (en & !rw) ? (data_out) : 8'bz;
 

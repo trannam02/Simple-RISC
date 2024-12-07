@@ -20,21 +20,31 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module cpu_tb(
-
-    );
+module cpu_tb();
+    
 reg clock;
-
+wire [4:0] address_mux_out;
+wire [7:0] mem_in_out;
+wire mem_rw;
+wire [7:0] accumulator_reg;
+wire [4:0] pc;
+wire [7:0] IR;
 initial begin
     clock = 1'b1;
-end;
-
-initial begin
-    forever #5 clock = ~clock;  
+    forever #5 clock = ~clock;
 end;
 
 initial begin
     #100 $finish;
 end;
-cpu MY_CPU (.clock(clock));
+cpu MY_CPU (
+    .clock(clock),
+    .reset(1'b0),
+    .simul_address_mux_2_mem(address_mux_out),
+    .simul_mem_in_out(mem_in_out),
+    .simul_sig_rw_mem(mem_rw),
+    .simul_AR_2_alu(accumulator_reg),
+    .simul_pc_2_address_mux(pc),
+    .simul_IR_out(IR)
+);
 endmodule
