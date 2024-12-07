@@ -32,8 +32,8 @@ module registerNbits_neg
 
 always @(negedge clk) begin
     if(rst)
-        out <= 0;
+        out = 0;
     else if(load)
-        out <= in;
+        out = in;
 end
 endmodule

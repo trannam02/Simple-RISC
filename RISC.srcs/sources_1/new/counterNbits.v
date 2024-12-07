@@ -14,7 +14,7 @@ module counterNbits
 /* reg [N-1:0] count = 0; */
 always @(posedge clk) begin
     if(!load && !rst) begin
-        out <= out + 1;
+        out = out + 1;
     end
 end
 always @(load, rst) begin

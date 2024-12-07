@@ -22,8 +22,8 @@ assign data = (en & !rw) ? (data_out) : 8'bz;
 always @(posedge clk) begin
     if(en)
         if(!rw)
-            data_out <= memory[addr];
+            data_out = memory[addr];
         else if(rw)
-            memory[addr] <= data; 
+            memory[addr] = data; 
 end
 endmodule

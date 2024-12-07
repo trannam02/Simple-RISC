@@ -1,168 +1,127 @@
 module Controller(
-	input clk,
-	input rst,
-	input [2:0] opcode, 
-	input is_zero,
-	output reg stop,
-	output reg [2:0] alu_op,
-	output reg addr_mux,
-	output reg rw_mem,	
-	output reg ar_mux,
-	output reg ar_load, 
-	output reg is_jump,
-	// reg skip va check_zero chi su dung noi bo de o day de quan sat duoc khi simulator
-	output reg skip,
-	output reg check_zero
+    input clk,
+    input rst,
+    input [2:0] opcode, 
+    input is_zero,
+    
+    output reg [2:0] alu_op,
+    output reg is_jump,
+    output reg ar_load, 
+    output reg ar_mux,
+    output reg rw_mem,
+    output reg addr_mux,
+    output reg load
 );
 
 
-
-localparam ADD = 3'b011;
-localparam AND = 3'b010;
+localparam HLT = 3'b000;
+localparam SKZ = 3'b001;
+localparam ADD = 3'b010;
+localparam AND = 3'b011;
 localparam XOR = 3'b100;
+localparam LDA = 3'b101;
+localparam STO = 3'b110;
+localparam JMP = 3'b111;
 
-always @(posedge clk or posedge rst) begin
-	if (rst) begin
-		stop <= 1'b0;
-		alu_op <= 2'b000;
-		addr_mux <= 1'b0;
-
-		rw_mem <= 1'b0;
-		ar_mux <= 1'b0;
-		ar_load <= 1'b0;
-		is_jump <= 1'b0;
-		skip <= 1'b0;
-		check_zero <= 1'b0;
-	end else if (skip) begin // bo qua lenh hien tai
-		stop <= 1'b0;
-		alu_op <= 2'b000;
-		addr_mux <= 1'b0;
-
-		rw_mem <= 1'b0;
-		ar_mux <= 1'b0;
-		ar_load <= 1'b0;
-		is_jump <= 1'b0;
-		skip <= 1'b0;
-		check_zero <= 1'b0;
-	end else begin
-		// Xử lý theo opcode
-		case(opcode)
-			3'b000: begin // HLT
-				stop <= 1'b1;
-				alu_op <= 2'b000;
-				addr_mux <= 1'b0;
-
-				rw_mem <= 1'b0;
-				ar_mux <= 1'b0;
-				ar_load <= 1'b0;
-				is_jump <= 1'b0;
-				skip <= 1'b0;
-				check_zero <= 1'b0;
-			end
-			3'b001: begin // SKZ
-				stop <= 1'b0;
-				alu_op <= 2'b000;
-				addr_mux <= 1'b0;
-
-				rw_mem <= 1'b0;
-				ar_mux <= 1'b0;
-				ar_load <= 1'b0;
-				is_jump <= 1'b0;
-				skip <= 1'b0;
-				check_zero <= 1'b1; // kich hoat kiem tra alu
-			end
-			3'b010: begin // ADD
-				stop <= 1'b0;
-				alu_op <= ADD;
-				addr_mux <= 1'b1; // chon addr trong data
-				rw_mem <= 1'b0; // doc mem
-				ar_mux <= 1'b0;   // ghi gia tri tu alu vao acc
-				ar_load <= 1'b1; // ghi vao acc
-				is_jump <= 1'b0;
-				skip <= 1'b0;
-				check_zero <= 1'b0;
-			end
-			3'b011: begin // AND
-				stop <= 1'b0;
-				alu_op <= AND;
-				addr_mux <= 1'b1; // chon addr trong data
-				rw_mem <= 1'b0; // doc mem
-				ar_mux <= 1'b0; // ghi gia tri tu alu vao acc
-				ar_load <= 1'b1; // ghi vao acc 
-				is_jump <= 1'b0; 
-				skip <= 1'b0;
-				check_zero <= 1'b0;
-			end
-			3'b100: begin // XOR
-				stop <= 1'b0;
-				alu_op <= XOR;
-				addr_mux <= 1'b1; // chon addr trong data
-				rw_mem <= 1'b0; // doc mem
-				ar_mux <= 1'b0; // ghi gia tri tu alu vao acc
-				ar_load <= 1'b1; // ghi vao acc 
-				is_jump <= 1'b0;
-				skip <= 1'b0;
-				check_zero <= 1'b0;
-			end
-			3'b101: begin // LDA
-				stop <= 1'b0;
-				alu_op <= 2'b000;
-				addr_mux <= 1'b1; // chon addr trong data
-
-				rw_mem <= 1'b0; // doc mem
-				ar_mux <= 1'b1; // ghi gia tri tu mem vao acc
-				ar_load <= 1'b1; // ghi vao acc
-				is_jump <= 1'b0;
-				skip <= 1'b0;
-				check_zero <= 1'b0;
-			end
-			3'b110: begin // STO
-				stop <= 1'b0;
-				alu_op <= 2'b000;
-				addr_mux <= 1'b1; // chon addr trong data
-				
-				rw_mem <= 1'b1; // viet vao mem
-				ar_mux <= 1'b0;
-				ar_load <= 1'b0;
-				is_jump <= 1'b0;
-				skip <= 1'b0;
-				check_zero <= 1'b0;
-			end
-			3'b111: begin // JMP
-				stop <= 1'b0;
-				alu_op <= 2'b000;
-				addr_mux <= 1'b0;
-				
-				rw_mem <= 1'b0;
-				ar_mux <= 1'b0;
-				ar_load <= 1'b0;
-				is_jump <= 1'b1; // kich hoat jump
-				skip <= 1'b1; // skip lenh tiep theo 
-				check_zero <= 1'b0;
-			end
-			default: begin
-				stop <= 1'b0;
-				alu_op <= 2'b000;
-				addr_mux <= 1'b0;
-				
-				rw_mem <= 1'b0;
-				ar_mux <= 1'b0;
-				ar_load <= 1'b0;
-				is_jump <= 1'b0;
-				skip <= 1'b0;
-				check_zero <= 1'b0;
-			end
-		endcase
-	end
+always @(*) begin
+    case(opcode)
+        HLT: begin // HLT
+            alu_op = HLT;
+            is_jump = 1'b0;
+            ar_load = 1'b0;
+            ar_mux = 1'b0;
+            rw_mem = 1'b0;
+            addr_mux = 1'b0;
+            load = 1'b0;
+        end
+        SKZ: begin // SKZ
+            alu_op = 2'b000;
+            if(is_zero)
+                is_jump = 1'b0;  // khong cho load instruction moi
+            ar_load = 1'b0;
+            ar_mux = 1'b0;
+            rw_mem = 1'b0;
+            addr_mux = 1'b0;
+            load = 1'b0;
+        end
+        ADD: begin // ADD
+            alu_op = ADD;
+            is_jump = 1'b1;
+            ar_load = 1'b1;
+            ar_mux = 1'b0;
+            rw_mem = 1'b0;
+            addr_mux = 1'b1;
+            load = 1'b0;
+        end
+        AND: begin // AND
+            alu_op = AND;
+            is_jump = 1'b1;
+            ar_load = 1'b1;
+            ar_mux = 1'b0;
+            rw_mem = 1'b0;
+            addr_mux = 1'b1;
+            load = 1'b0;
+        end
+        XOR: begin // XOR
+            alu_op = XOR;
+                    is_jump = 1'b1;
+                    ar_load = 1'b1;
+                    ar_mux = 1'b0;
+                    rw_mem = 1'b0;
+                    addr_mux = 1'b1;
+                    load = 1'b0;
+        end
+        LDA: begin // LDA
+            alu_op = LDA;
+            is_jump = 1'b1;
+            ar_load = 1'b1;
+            ar_mux = 1'b1;
+            rw_mem = 1'b0;
+            addr_mux = 1'b1;
+            load = 1'b0;
+        end
+        STO: begin // STO
+            alu_op = STO;
+            is_jump = 1'b1;
+            ar_load = 1'b1;
+            ar_mux = 1'b1;
+            rw_mem = 1'b1;
+            addr_mux = 1'b1;
+            load = 1'b0;
+        end
+        JMP: begin // JMP
+            alu_op = JMP;
+            is_jump = 1'b0;  // khong cho load instruction moi
+            ar_load = 1'b0;
+            ar_mux = 1'b0;
+            rw_mem = 1'b0;
+            addr_mux = 1'b0;
+            load = 1'b1; // load preset
+        end
+        default: begin
+            alu_op = JMP;
+            is_jump = 1'b1;
+            ar_load = 1'b0;
+            ar_mux = 1'b0;
+            rw_mem = 1'b0;
+            addr_mux = 1'b0;
+            load = 1'b0;
+        end
+    endcase
 end
 
+
 always @(negedge clk) begin
-	if (check_zero) begin
-		if (is_zero) begin
-			skip <= 1'b1; // kich hoat skip lenh tiep theo
-		end
-		check_zero <= 1'b0;
-	end
+
+if(opcode) begin // (opcode != HLT) => normal  =======  (opcode == HLT) => is_jump = 0
+    if (load) begin
+        load = 1'b0;
+    end
+    if(is_jump) begin
+       is_jump = 1'b0;
+    end
+end
+
 end
 
 endmodule
