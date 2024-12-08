@@ -5,13 +5,13 @@ module Controller(
     input is_zero,
     
     output reg [2:0] alu_op = 3'b000,
-    output reg is_jump = 1,
     output reg ar_load = 0, 
     output reg ar_mux = 0,
     output reg rw_mem = 0,
     output reg addr_mux = 0,
     output reg load = 0,
-    output reg disable2 = 1 // tuong duong is_jump
+    output reg load_ir_1 = 1, // from ex
+    output reg load_ir_2 = 1  // from wb
 );
 
 
@@ -28,97 +28,96 @@ always @(opcode) begin
     case(opcode)
         HLT: begin // HLT
             alu_op = HLT;
-            is_jump = 1'b0;
+            load_ir_1 = 1'b0;
             ar_load = 1'b0;
             ar_mux = 1'b0;
             rw_mem = 1'b0;
             addr_mux = 1'b0;
             load = 1'b0;
-            disable2 = 1'b0;
+            load_ir_2 = 1'b0;
         end
         SKZ: begin // SKZ
             alu_op = 2'b000;
-            if(is_zero) begin
-                is_jump = 1'b0;  // khong cho load instruction moi
-                disable2 = 1'b1; end
-            else begin
-                is_jump = 1'b1;
-                disable2 = 1'b1; end
+            if(is_zero) 
+                load_ir_1 = 1'b0;  // khong cho load instruction moi
+            else 
+                load_ir_1 = 1'b1;
             ar_load = 1'b0;
             ar_mux = 1'b0;
             rw_mem = 1'b0;
             addr_mux = 1'b0;
             load = 1'b0;
+            load_ir_2 = 1'b1;
         end
         ADD: begin // ADD
             alu_op = ADD;
-            is_jump = 1'b1;
+            load_ir_1 = 1'b1;
             ar_load = 1'b1;
             ar_mux = 1'b0;
             rw_mem = 1'b0;
             addr_mux = 1'b1;
             load = 1'b0;
-            disable2 = 1'b0;
+            load_ir_2 = 1'b0;
         end
         AND: begin // AND
             alu_op = AND;
-            is_jump = 1'b1;
+            load_ir_1 = 1'b1;
             ar_load = 1'b1;
             ar_mux = 1'b0;
             rw_mem = 1'b0;
             addr_mux = 1'b1;
             load = 1'b0;
-            disable2 = 1'b0;
+            load_ir_2 = 1'b0;
         end
         XOR: begin // XOR
             alu_op = XOR;
-            is_jump = 1'b1;
+            load_ir_1 = 1'b1;
             ar_load = 1'b1;
             ar_mux = 1'b0;
             rw_mem = 1'b0;
             addr_mux = 1'b1;
             load = 1'b0;
-            disable2 = 1'b0;
+            load_ir_2 = 1'b0;
         end
         LDA: begin // LDA
             alu_op = LDA;
-            is_jump = 1'b1;
+            load_ir_1 = 1'b1;
             ar_load = 1'b1;
             ar_mux = 1'b1;
             rw_mem = 1'b0;
             addr_mux = 1'b1;
             load = 1'b0;
-            disable2 = 1'b0;
+            load_ir_2 = 1'b0;
         end
         STO: begin // STO
             alu_op = STO;
-            is_jump = 1'b0;
+            load_ir_1 = 1'b0;
             ar_load = 1'b0;
             ar_mux = 1'b0;
             rw_mem = 1'b1;
             addr_mux = 1'b1;
             load = 1'b0;
-            disable2 = 1'b0; // chan
+            load_ir_2 = 1'b0; // chan
         end
         JMP: begin // JMP
             alu_op = JMP;
-            is_jump = 1'b0;  // khong cho load instruction moi
+            load_ir_1 = 1'b0;  // khong cho load instruction moi
             ar_load = 1'b0;
             ar_mux = 1'b0;
             rw_mem = 1'b0;
             addr_mux = 1'b0;
             load = 1'b1; // load preset
-            disable2 = 1'b1; // tha
+            load_ir_2 = 1'b1; // tha
         end
         default: begin
             alu_op = JMP;
-            is_jump = 1'b1;
+            load_ir_1 = 1'b1;
             ar_load = 1'b0;
             ar_mux = 1'b0;
             rw_mem = 1'b0;
             addr_mux = 1'b0;
             load = 1'b0;
-            disable2 = 1'b1; // tha
+            load_ir_2 = 1'b1; // tha
         end
     endcase
 end
@@ -126,15 +125,15 @@ end
 
 always @(negedge clk) begin
 
-if(opcode) begin // (opcode != HLT) => normal  =======  (opcode == HLT) => is_jump = 0
+if(opcode) begin // (opcode != HLT) => normal  =======  (opcode == HLT) => load_ir_1 = 0
     if (load) begin
         load = 1'b0;
     end
-    if(!is_jump) begin
-        is_jump = 1'b1;
+    if(!load_ir_1) begin
+        load_ir_1 = 1'b1;
     end
-    if(!disable2) begin
-        disable2 = 1'b1;
+    if(!load_ir_2) begin
+        load_ir_2 = 1'b1;
     end
     if(addr_mux) begin
         addr_mux = 1'b0;

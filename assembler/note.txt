@@ -1,0 +1,6 @@
+add, and, xor, 
+
+
+sto
+sta
+sta
