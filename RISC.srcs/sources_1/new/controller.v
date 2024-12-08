@@ -93,8 +93,8 @@ always @(opcode) begin
         STO: begin // STO
             alu_op = STO;
             is_jump = 1'b0;
-            ar_load = 1'b1;
-            ar_mux = 1'b1;
+            ar_load = 1'b0;
+            ar_mux = 1'b0;
             rw_mem = 1'b1;
             addr_mux = 1'b1;
             load = 1'b0;

@@ -26,8 +26,10 @@ void parserLine(string line,unsigned char & instruction) {
     line.copy(_opResult, 3);
     _opResult[3] = '\0';
     string strResult = _opResult;
-    if(strResult == "hlt"){
-        // do nothing
+    if(strResult == "sta"){
+        instruction = 0xFF;
+    }else if(strResult == "hlt"){
+        instruction = 0;
     }else if(strResult == "skz"){
         instruction |= (instruction | 0x1) << 5;
     }else if(strResult == "add"){

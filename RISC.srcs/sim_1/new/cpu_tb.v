@@ -35,7 +35,7 @@ initial begin
 end;
 
 initial begin
-    #100 $finish;
+    #1000 $finish;
 end;
 cpu MY_CPU (
     .clock(clock),
