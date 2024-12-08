@@ -6,7 +6,7 @@
 *******************************/
 module memory32x8_bi
 (
-    input clk, rw, en,
+    input clk, rw, enable_mem_in,
     input [4:0] addr,
     inout [7:0] data
 );
@@ -17,12 +17,12 @@ initial begin
 $readmemh("D:/DATKLL/test/Simple-RISC/assembler/output.mem", memory);
 end;
 
-assign data = (!rw) ? (data_out) : 8'bz;
-
+assign data = enable_mem_in ? 8'bz : data_out;
 always @(posedge clk) begin
-    if(!rw)
+    if(!rw) begin
         data_out <= memory[addr];
-    else if(rw)
-        memory[addr] <= data; 
+    end else if(rw) begin
+        memory[addr] <= data;
+    end
 end
 endmodule

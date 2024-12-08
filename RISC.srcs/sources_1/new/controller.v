@@ -7,7 +7,7 @@ module Controller(
 	output reg stop,
 	output reg [2:0] alu_op,
 	output reg addr_mux,
-	output reg enable_mem,
+	output reg enable_mem_in,
 	output reg rw_mem,	
 	output reg ar_mux,
 	output reg ar_load, 
@@ -29,7 +29,7 @@ always @(posedge clk or posedge rst) begin
 		stop <= 1'b0;
 		alu_op <= 2'b000;
 		addr_mux <= 1'b0;
-		enable_mem <= 1'b0;
+		enable_mem_in <= 1'b0;
 		rw_mem <= 1'b0;
 		ar_mux <= 1'b0;
 		ar_load <= 1'b0;
@@ -42,7 +42,7 @@ always @(posedge clk or posedge rst) begin
 		stop <= 1'b1; // continue stop program
 		alu_op <= 2'b000;
 		addr_mux <= 1'b0;
-		enable_mem <= 1'b0;
+		enable_mem_in <= 1'b0;
 		rw_mem <= 1'b0;
 		ar_mux <= 1'b0;
 		ar_load <= 1'b0;
@@ -54,7 +54,7 @@ always @(posedge clk or posedge rst) begin
 		stop <= 1'b0;
 		alu_op <= 2'b000;
 		addr_mux <= 1'b0;
-		enable_mem <= 1'b0;
+		enable_mem_in <= 1'b0;
 		rw_mem <= 1'b0;
 		ar_mux <= 1'b0;
 		ar_load <= 1'b0;
@@ -66,7 +66,7 @@ always @(posedge clk or posedge rst) begin
 		stop <= 1'b0;
 		alu_op <= 2'b000;
 		addr_mux <= 1'b0;
-		enable_mem <= 1'b0;
+		enable_mem_in <= 1'b0;
 		rw_mem <= 1'b0;
 		ar_mux <= 1'b0;
 		ar_load <= 1'b0;
@@ -81,7 +81,7 @@ always @(posedge clk or posedge rst) begin
 				stop <= 1'b1;
 				alu_op <= 2'b000;
 				addr_mux <= 1'b0;
-				enable_mem <= 1'b0;
+				enable_mem_in <= 1'b0;
 				rw_mem <= 1'b0;
 				ar_mux <= 1'b0;
 				ar_load <= 1'b0;
@@ -94,7 +94,7 @@ always @(posedge clk or posedge rst) begin
 				stop <= 1'b0;
 				alu_op <= 2'b000;
 				addr_mux <= 1'b0;
-				enable_mem <= 1'b0;
+				enable_mem_in <= 1'b0;
 				rw_mem <= 1'b0;
 				ar_mux <= 1'b0;
 				ar_load <= 1'b0;
@@ -107,7 +107,7 @@ always @(posedge clk or posedge rst) begin
 				stop <= 1'b0;
 				alu_op <= ADD;
 				addr_mux <= 1'b1; // chon addr trong data
-				enable_mem <= 1'b1; // kich hoat mem
+				enable_mem_in <= 1'b0; // kich hoat mem
 				rw_mem <= 1'b0; // doc mem
 				ar_mux <= 1'b0;   // ghi gia tri tu alu vao acc
 				ar_load <= 1'b1; // ghi vao acc
@@ -120,7 +120,7 @@ always @(posedge clk or posedge rst) begin
 				stop <= 1'b0;
 				alu_op <= AND;
 				addr_mux <= 1'b1; // chon addr trong data
-				enable_mem <= 1'b1; // kich hoat mem
+				enable_mem_in <= 1'b0; // kich hoat mem
 				rw_mem <= 1'b0; // doc mem
 				ar_mux <= 1'b0; // ghi gia tri tu alu vao acc
 				ar_load <= 1'b1; // ghi vao acc 
@@ -133,7 +133,7 @@ always @(posedge clk or posedge rst) begin
 				stop <= 1'b0;
 				alu_op <= XOR;
 				addr_mux <= 1'b1; // chon addr trong data
-				enable_mem <= 1'b1; // kich hoat mem
+				enable_mem_in <= 1'b0; // kich hoat mem
 				rw_mem <= 1'b0; // doc mem
 				ar_mux <= 1'b0; // ghi gia tri tu alu vao acc
 				ar_load <= 1'b1; // ghi vao acc 
@@ -147,7 +147,7 @@ always @(posedge clk or posedge rst) begin
 				stop <= 1'b0;
 				alu_op <= 2'b000;
 				addr_mux <= 1'b1; // chon addr trong data
-				enable_mem <= 1'b1; // kich hoat mem
+				enable_mem_in <= 1'b0; // kich hoat mem
 				rw_mem <= 1'b0; // doc mem
 				ar_mux <= 1'b1; // ghi gia tri tu mem vao acc
 				ar_load <= 1'b1; // ghi vao acc
@@ -160,7 +160,7 @@ always @(posedge clk or posedge rst) begin
 				stop <= 1'b0;
 				alu_op <= 2'b000;
 				addr_mux <= 1'b1; // chon addr trong data
-				enable_mem <= 1'b1; // kich hoat mem
+				enable_mem_in <= 1'b1; // kich hoat mem
 				rw_mem <= 1'b1; // viet vao mem
 				ar_mux <= 1'b0;
 				ar_load <= 1'b0;
@@ -173,7 +173,7 @@ always @(posedge clk or posedge rst) begin
 				stop <= 1'b0;
 				alu_op <= 2'b000;
 				addr_mux <= 1'b0;
-				enable_mem <= 1'b0;
+				enable_mem_in <= 1'b0;
 				rw_mem <= 1'b0;
 				ar_mux <= 1'b0;
 				ar_load <= 1'b0;
@@ -186,7 +186,7 @@ always @(posedge clk or posedge rst) begin
 				stop <= 1'b0;
 				alu_op <= 2'b000;
 				addr_mux <= 1'b0;
-				enable_mem <= 1'b0;
+				enable_mem_in <= 1'b0;
 				rw_mem <= 1'b0;
 				ar_mux <= 1'b0;
 				ar_load <= 1'b0;

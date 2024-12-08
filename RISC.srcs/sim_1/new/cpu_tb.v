@@ -23,11 +23,11 @@
 module cpu_tb;
     reg clock;
     reg reset;
-    wire [7:0] IR_out, mem_in_out;
+    wire [7:0] IR_out, mem_in_out, AR_2_alu, alu_2_result_reg, acc_mux_2_AR;
     wire sig_is_jump;
     wire [4:0] address_mux_2_mem;
     wire sig_stop;
-    wire [2:0] sig_alu_op;
+    wire [2:0] sig_alu_op, sig_ex_alu_op;
     wire sig_addr_mux, sig_rw_mem, sig_ar_mux, sig_ar_load, sig_ir_load, stall, sig_ex_ir_load;
 
     initial begin
@@ -57,6 +57,10 @@ module cpu_tb;
         .mem_in_out(mem_in_out),
         .sig_ir_load(sig_ir_load),
         .stall(stall),
-        .sig_ex_ir_load(sig_ex_ir_load)
+        .sig_ex_ir_load(sig_ex_ir_load),
+        .AR_2_alu(AR_2_alu),
+        .alu_2_result_reg(alu_2_result_reg),
+        .sig_ex_alu_op(sig_ex_alu_op),
+        .acc_mux_2_AR(acc_mux_2_AR)
     );
 endmodule
