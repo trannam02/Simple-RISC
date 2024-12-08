@@ -1,4 +1,6 @@
 lda 0x1C
 add 0x1D
+hlt
+hlt
 sto 0x1F
 hlt

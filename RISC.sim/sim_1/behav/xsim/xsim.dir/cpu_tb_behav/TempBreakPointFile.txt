@@ -1,2 +1,2 @@
 Breakpoint File Version 1.0
-56 true C:/Users/NAM/RISC/RISC.srcs/sources_1/new/cpu.v
+34 true C:/Users/NAM/RISC/RISC.srcs/sim_1/new/cpu_tb.v

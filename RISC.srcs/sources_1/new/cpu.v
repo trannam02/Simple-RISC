@@ -53,6 +53,7 @@ wire sig_ar_mux;
 wire sig_rw_mem;
 wire sig_addr_mux;
 wire sig_load;
+wire sig_disable2;
 
 // EX signal wire
 wire [2:0] sig_ex_alu_op;
@@ -62,6 +63,7 @@ wire sig_ex_ar_mux;
 wire sig_ex_rw_mem;
 wire sig_ex_addr_mux;
 wire sig_ex_load;
+wire sig_ex_disable2;
 
 // WB signal wire
 wire [2:0] sig_wb_alu_op;
@@ -71,6 +73,7 @@ wire sig_wb_ar_mux;
 wire sig_wb_rw_mem;
 wire sig_wb_addr_mux;
 wire sig_wb_load;
+wire sig_wb_disable2;
 
 // connect to see output
 assign simul_sig_rw_mem = sig_rw_mem;
@@ -148,23 +151,26 @@ bufferNbits #(.N(8)) BUFFER_MEM (       // BUFFER
     .en(sig_ex_rw_mem),
     .in(AR_2_alu)
 );
+wire test;
+assign test = sig_wb_disable2 & sig_ex_is_jump;
 
 registerNbits #(.N(8)) REG_INS (        // INSTRUCTION REG
     .out(IR_out),
     .clk(clock),
     .rst(reset),
-    .load(sig_ex_is_jump),
+    .load(test),
     .in(mem_in_out)
 );
 
-registerNbits_neg #(.N(6)) REG_CONTROL_EX ( // CONTROL EXECUTE // have not modified yet
+registerNbits_neg #(.N(9)) REG_CONTROL_EX ( // CONTROL EXECUTE // have not modified yet
     .out({
         sig_ex_alu_op, 
         sig_ex_is_jump,
         sig_ex_ar_load, 
         sig_ex_ar_mux,
         sig_ex_rw_mem, 
-        sig_ex_addr_mux
+        sig_ex_addr_mux,
+        sig_ex_disable2
     }),
     .clk(clock),
     .rst(reset),
@@ -175,21 +181,24 @@ registerNbits_neg #(.N(6)) REG_CONTROL_EX ( // CONTROL EXECUTE // have not modif
         sig_ar_load,
         sig_ar_mux,
         sig_rw_mem,
-        sig_addr_mux
+        sig_addr_mux,
+        sig_disable2
     })
 );
 
-registerNbits_neg #(.N(6)) REG_CONTROL_WB ( // CONTROL WRITEBACK REG // have not modified yet
+registerNbits_neg #(.N(3)) REG_CONTROL_WB ( // CONTROL WRITEBACK REG // have not modified yet
     .out({
         sig_wb_ar_load,
-        sig_wb_ar_mux
+        sig_wb_ar_mux,
+        sig_wb_disable2
     }),
     .clk(clock),
     .rst(reset),
     .load(1'b1),
     .in({
         sig_ex_ar_load,
-        sig_ex_ar_mux
+        sig_ex_ar_mux,
+        sig_ex_disable2
     })
 );
 
@@ -207,7 +216,8 @@ Controller CONTROLLER (
     .ar_mux(sig_ar_mux),
     .rw_mem(sig_rw_mem),
     .addr_mux(sig_addr_mux),
-    .load(sig_load)
+    .load(sig_load),
+    .disable2(sig_disable2)
 );
 endmodule
 
