@@ -27,7 +27,7 @@ localparam XOR = 3'b100;
 always @(posedge clk or posedge rst) begin
 	if (rst) begin
 		stop <= 1'b0;
-		alu_op <= 2'b000;
+		alu_op <= 3'b000;
 		addr_mux <= 1'b0;
 		enable_mem_in <= 1'b0;
 		rw_mem <= 1'b0;
@@ -40,7 +40,7 @@ always @(posedge clk or posedge rst) begin
 	end else if (stop) begin
 		// stop and do nothing
 		stop <= 1'b1; // continue stop program
-		alu_op <= 2'b000;
+		alu_op <= 3'b000;
 		addr_mux <= 1'b0;
 		enable_mem_in <= 1'b0;
 		rw_mem <= 1'b0;
@@ -52,7 +52,7 @@ always @(posedge clk or posedge rst) begin
 		check_zero <= 1'b0;
 	end else if (skip) begin // bo qua lenh hien tai
 		stop <= 1'b0;
-		alu_op <= 2'b000;
+		alu_op <= 3'b000;
 		addr_mux <= 1'b0;
 		enable_mem_in <= 1'b0;
 		rw_mem <= 1'b0;
@@ -64,7 +64,7 @@ always @(posedge clk or posedge rst) begin
 		check_zero <= 1'b0;
 	end else if (stall) begin	
 		stop <= 1'b0;
-		alu_op <= 2'b000;
+		alu_op <= 3'b000;
 		addr_mux <= 1'b0;
 		enable_mem_in <= 1'b0;
 		rw_mem <= 1'b0;
@@ -79,7 +79,7 @@ always @(posedge clk or posedge rst) begin
 		case(opcode)
 			3'b000: begin // HLT
 				stop <= 1'b1;
-				alu_op <= 2'b000;
+				alu_op <= 3'b000;
 				addr_mux <= 1'b0;
 				enable_mem_in <= 1'b0;
 				rw_mem <= 1'b0;
@@ -92,7 +92,7 @@ always @(posedge clk or posedge rst) begin
 			end
 			3'b001: begin // SKZ
 				stop <= 1'b0;
-				alu_op <= 2'b000;
+				alu_op <= 3'b000;
 				addr_mux <= 1'b0;
 				enable_mem_in <= 1'b0;
 				rw_mem <= 1'b0;
@@ -145,7 +145,7 @@ always @(posedge clk or posedge rst) begin
 			end
 			3'b101: begin // LDA
 				stop <= 1'b0;
-				alu_op <= 2'b000;
+				alu_op <= 3'b000;
 				addr_mux <= 1'b1; // chon addr trong data
 				enable_mem_in <= 1'b0; // kich hoat mem
 				rw_mem <= 1'b0; // doc mem
@@ -158,7 +158,7 @@ always @(posedge clk or posedge rst) begin
 			end
 			3'b110: begin // STO
 				stop <= 1'b0;
-				alu_op <= 2'b000;
+				alu_op <= 3'b000;
 				addr_mux <= 1'b1; // chon addr trong data
 				enable_mem_in <= 1'b1; // kich hoat mem
 				rw_mem <= 1'b1; // viet vao mem
@@ -171,7 +171,7 @@ always @(posedge clk or posedge rst) begin
 			end
 			3'b111: begin // JMP
 				stop <= 1'b0;
-				alu_op <= 2'b000;
+				alu_op <= 3'b000;
 				addr_mux <= 1'b0;
 				enable_mem_in <= 1'b0;
 				rw_mem <= 1'b0;
@@ -184,7 +184,7 @@ always @(posedge clk or posedge rst) begin
 			end
 			default: begin
 				stop <= 1'b0;
-				alu_op <= 2'b000;
+				alu_op <= 3'b000;
 				addr_mux <= 1'b0;
 				enable_mem_in <= 1'b0;
 				rw_mem <= 1'b0;

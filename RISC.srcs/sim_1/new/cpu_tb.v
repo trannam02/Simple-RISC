@@ -28,7 +28,7 @@ module cpu_tb;
     wire [4:0] address_mux_2_mem;
     wire sig_stop;
     wire [2:0] sig_alu_op, sig_ex_alu_op;
-    wire sig_addr_mux, sig_rw_mem, sig_ar_mux, sig_ar_load, sig_ir_load, stall, sig_ex_ir_load;
+    wire sig_addr_mux, sig_rw_mem, sig_ar_mux, sig_ar_load, sig_ir_load, stall, sig_ex_ir_load, alu_is_zero_2_control;
 
     initial begin
         clock = 1'b0;
@@ -61,6 +61,7 @@ module cpu_tb;
         .AR_2_alu(AR_2_alu),
         .alu_2_result_reg(alu_2_result_reg),
         .sig_ex_alu_op(sig_ex_alu_op),
-        .acc_mux_2_AR(acc_mux_2_AR)
+        .acc_mux_2_AR(acc_mux_2_AR),
+        .alu_is_zero_2_control(alu_is_zero_2_control)
     );
 endmodule

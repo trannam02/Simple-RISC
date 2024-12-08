@@ -31,7 +31,7 @@ module cpu(
     output sig_addr_mux, sig_rw_mem, sig_ar_mux, sig_ar_load,
     output sig_ir_load,
     output stall,
-    output sig_ex_ir_load,
+    output sig_ex_ir_load, alu_is_zero_2_control,
     output [7:0] AR_2_alu, alu_2_result_reg
 );
 
@@ -40,7 +40,7 @@ wire [4:0] counter_2_pc, pc_2_address_mux;
 
 wire [7:0] result_reg_2_acc_mux;
 
-wire alu_is_zero_2_control;
+
 
 // control signal wire
 wire sig_enable_mem_in;
