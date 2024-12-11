@@ -1,4 +1,4 @@
-`timescale 1ns / 1ps
+//`timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
 // Engineer: 
@@ -208,18 +208,17 @@ assign is_zero_from_acc = AR_2_alu ? 0 : 1;
 
 Controller CONTROLLER (
     .clk(clock),
-	.rst(reset),
 	.opcode(IR_out[7:5]), 
 	.is_zero(is_zero_from_acc),
         
-    .alu_op(sig_alu_op),
-    .ar_load(sig_ar_load),
-    .ar_mux(sig_ar_mux),
-    .rw_mem(sig_rw_mem),
-    .addr_mux(sig_addr_mux),
-    .load(sig_load),
-    .load_ir_1(sig_load_ir_1),
-    .load_ir_2(sig_load_ir_2)
+    .o_alu_op(sig_alu_op),
+    .o_ar_load(sig_ar_load),
+    .o_ar_mux(sig_ar_mux),
+    .o_rw_mem(sig_rw_mem),
+    .o_addr_mux(sig_addr_mux),
+    .o_load(sig_load),
+    .o_load_ir_1(sig_load_ir_1),
+    .o_load_ir_2(sig_load_ir_2)
 );
 endmodule
 

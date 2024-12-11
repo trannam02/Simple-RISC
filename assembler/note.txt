@@ -1,6 +1,15 @@
-add, and, xor, 
+add, and, xor, load
+ok
+stall
 
 
 sto
-sta
-sta
+stall
+stall
+
+
+add
+and FF
+stall
+stall
+sto

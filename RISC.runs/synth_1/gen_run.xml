@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7z020clg400-1" LaunchTime="1733326638">
+<GenRun Id="synth_1" LaunchPart="xc7z020clg400-1" LaunchTime="1733938342">
   <File Type="PA-TCL" Name="cpu.tcl"/>
+  <File Type="RDS-PROPCONSTRS" Name="cpu_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="cpu_reports.tcl"/>
   <File Type="RDS-RDS" Name="cpu.vds"/>
   <File Type="RDS-UTIL" Name="cpu_utilization_synth.rpt"/>
   <File Type="RDS-UTIL-PB" Name="cpu_utilization_synth.pb"/>
   <File Type="RDS-DCP" Name="cpu.dcp"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="cpu_timing_summary_synth.rpt"/>
+  <File Type="VDS-TIMING-PB" Name="cpu_timing_summary_synth.pb"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/new/ALU.v">
@@ -71,10 +74,21 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
+    <File Path="$PSRCDIR/sources_1/new/test.v">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sim_1/new/output.mem">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <Config>
       <Option Name="DesignMode" Val="RTL"/>
       <Option Name="TopModule" Val="cpu"/>
-      <Option Name="TopAutoSet" Val="TRUE"/>
     </Config>
   </FileSet>
   <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">

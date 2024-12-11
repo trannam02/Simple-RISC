@@ -23,6 +23,7 @@
 module cpu_tb();
     
 reg clock;
+reg reset;
 wire [4:0] address_mux_out;
 wire [7:0] mem_in_out;
 wire mem_rw;
@@ -31,15 +32,18 @@ wire [4:0] pc;
 wire [7:0] IR;
 initial begin
     clock = 1'b1;
+//    reset = 1'b0;
     forever #5 clock = ~clock;
 end;
 
 initial begin
-    #1000 $finish;
+    reset = 1'b1;
+    #1 reset = 1'b0;
+    #200 $finish;
 end;
 cpu MY_CPU (
     .clock(clock),
-    .reset(1'b0),
+    .reset(reset),
     .simul_address_mux_2_mem(address_mux_out),
     .simul_mem_in_out(mem_in_out),
     .simul_sig_rw_mem(mem_rw),

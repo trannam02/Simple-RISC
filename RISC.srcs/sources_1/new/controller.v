@@ -1,19 +1,17 @@
 module Controller(
     input clk,
-    input rst,
     input [2:0] opcode, 
     input is_zero,
     
-    output reg [2:0] alu_op = 3'b000,
-    output reg ar_load = 0, 
-    output reg ar_mux = 0,
-    output reg rw_mem = 0,
-    output reg addr_mux = 0,
-    output reg load = 0,
-    output reg load_ir_1 = 1, // from ex
-    output reg load_ir_2 = 1  // from wb
+    output [2:0] o_alu_op,
+    output o_ar_load, 
+    output o_ar_mux,
+    output o_rw_mem,
+    output o_addr_mux,
+    output o_load,
+    output o_load_ir_1, // from ex
+    output o_load_ir_2  // from wb
 );
-
 
 localparam HLT = 3'b000;
 localparam SKZ = 3'b001;
@@ -24,128 +22,162 @@ localparam LDA = 3'b101;
 localparam STO = 3'b110;
 localparam JMP = 3'b111;
 
-always @(opcode) begin
-    case(opcode)
-        HLT: begin // HLT
-            alu_op = HLT;
-            load_ir_1 = 1'b0;
-            ar_load = 1'b0;
-            ar_mux = 1'b0;
-            rw_mem = 1'b0;
-            addr_mux = 1'b0;
-            load = 1'b0;
-            load_ir_2 = 1'b0;
-        end
-        SKZ: begin // SKZ
-            alu_op = 2'b000;
-            if(is_zero) 
-                load_ir_1 = 1'b0;  // khong cho load instruction moi
-            else 
-                load_ir_1 = 1'b1;
-            ar_load = 1'b0;
-            ar_mux = 1'b0;
-            rw_mem = 1'b0;
-            addr_mux = 1'b0;
-            load = 1'b0;
-            load_ir_2 = 1'b1;
-        end
-        ADD: begin // ADD
-            alu_op = ADD;
-            load_ir_1 = 1'b1;
-            ar_load = 1'b1;
-            ar_mux = 1'b0;
-            rw_mem = 1'b0;
-            addr_mux = 1'b1;
-            load = 1'b0;
-            load_ir_2 = 1'b0;
-        end
-        AND: begin // AND
-            alu_op = AND;
-            load_ir_1 = 1'b1;
-            ar_load = 1'b1;
-            ar_mux = 1'b0;
-            rw_mem = 1'b0;
-            addr_mux = 1'b1;
-            load = 1'b0;
-            load_ir_2 = 1'b0;
-        end
-        XOR: begin // XOR
-            alu_op = XOR;
-            load_ir_1 = 1'b1;
-            ar_load = 1'b1;
-            ar_mux = 1'b0;
-            rw_mem = 1'b0;
-            addr_mux = 1'b1;
-            load = 1'b0;
-            load_ir_2 = 1'b0;
-        end
-        LDA: begin // LDA
-            alu_op = LDA;
-            load_ir_1 = 1'b1;
-            ar_load = 1'b1;
-            ar_mux = 1'b1;
-            rw_mem = 1'b0;
-            addr_mux = 1'b1;
-            load = 1'b0;
-            load_ir_2 = 1'b0;
-        end
-        STO: begin // STO
-            alu_op = STO;
-            load_ir_1 = 1'b0;
-            ar_load = 1'b0;
-            ar_mux = 1'b0;
-            rw_mem = 1'b1;
-            addr_mux = 1'b1;
-            load = 1'b0;
-            load_ir_2 = 1'b0; // chan
-        end
-        JMP: begin // JMP
-            alu_op = JMP;
-            load_ir_1 = 1'b0;  // khong cho load instruction moi
-            ar_load = 1'b0;
-            ar_mux = 1'b0;
-            rw_mem = 1'b0;
-            addr_mux = 1'b0;
-            load = 1'b1; // load preset
-            load_ir_2 = 1'b1; // tha
-        end
-        default: begin
-            alu_op = JMP;
-            load_ir_1 = 1'b1;
-            ar_load = 1'b0;
-            ar_mux = 1'b0;
-            rw_mem = 1'b0;
-            addr_mux = 1'b0;
-            load = 1'b0;
-            load_ir_2 = 1'b1; // tha
-        end
-    endcase
-end
+// signal
+reg [2:0] alu_op = 3'b111;
+reg ar_load = 0;
+reg ar_mux = 0;
+reg rw_mem = 0;
+reg addr_mux = 0;
+reg load = 0;
+reg load_ir_1 = 1; // from ex
+reg load_ir_2 = 1;  // from wb
 
+// default signal
+reg [2:0] default_alu_op = 3'b111;
+reg default_ar_load = 0;
+reg default_ar_mux = 0;
+reg default_rw_mem = 0;
+reg default_addr_mux = 0;
+reg default_load = 0;
+reg default_load_ir_1 = 1; // from ex
+reg default_load_ir_2 = 1;  // from wb
 
-always @(negedge clk) begin
+// edge detecter
+reg [2:0] reg0 = 0;
+reg [2:0] reg1 = 0;
+wire edge_detected;
 
-if(opcode) begin // (opcode != HLT) => normal  =======  (opcode == HLT) => load_ir_1 = 0
-    if (load) begin
+always @(opcode or clk) begin
+reg0 <= opcode;
+reg1 <= reg0;
+case(opcode)
+    HLT: begin // HLT
+        alu_op = HLT;
+        load_ir_1 = 1'b0;
+        ar_load = 1'b0;
+        ar_mux = 1'b0;
+        rw_mem = 1'b0;
+        addr_mux = 1'b0;
         load = 1'b0;
+        load_ir_2 = 1'b0;
     end
-    if(!load_ir_1) begin
-        load_ir_1 = 1'b1;
-    end
-    if(!load_ir_2) begin
+    SKZ: begin // SKZ
+        alu_op = 2'b000;
+        if(is_zero) 
+            load_ir_1 = 1'b0;  // khong cho load instruction moi
+        else 
+            load_ir_1 = 1'b1;
+        ar_load = 1'b0;
+        ar_mux = 1'b0;
+        rw_mem = 1'b0;
+        addr_mux = 1'b0;
+        load = 1'b0;
         load_ir_2 = 1'b1;
     end
-    if(addr_mux) begin
-        addr_mux = 1'b0;
-    end
-    if(ar_load) begin
-            ar_load = 1'b0;
-    end
-    if(rw_mem) begin
+    ADD: begin // ADD
+        alu_op = ADD;
+        load_ir_1 = 1'b1;
+        ar_load = 1'b1;
+        ar_mux = 1'b0;
         rw_mem = 1'b0;
+        addr_mux = 1'b1;
+        load = 1'b0;
+        load_ir_2 = 1'b0;
     end
+    AND: begin // AND
+        alu_op = AND;
+        load_ir_1 = 1'b1;
+        ar_load = 1'b1;
+        ar_mux = 1'b0;
+        rw_mem = 1'b0;
+        addr_mux = 1'b1;
+        load = 1'b0;
+        load_ir_2 = 1'b0;
+    end
+    XOR: begin // XOR
+        alu_op = XOR;
+        load_ir_1 = 1'b1;
+        ar_load = 1'b1;
+        ar_mux = 1'b0;
+        rw_mem = 1'b0;
+        addr_mux = 1'b1;
+        load = 1'b0;
+        load_ir_2 = 1'b0;
+    end
+    LDA: begin // LDA
+        alu_op = LDA;
+        load_ir_1 = 1'b1;
+        ar_load = 1'b1;
+        ar_mux = 1'b1;
+        rw_mem = 1'b0;
+        addr_mux = 1'b1;
+        load = 1'b0;
+        load_ir_2 = 1'b0;
+    end
+    STO: begin // STO
+        alu_op = STO;
+        load_ir_1 = 1'b0;
+        ar_load = 1'b0;
+        ar_mux = 1'b0;
+        rw_mem = 1'b1;
+        addr_mux = 1'b1;
+        load = 1'b0;
+        load_ir_2 = 1'b0; // chan
+    end
+    JMP: begin // JMP
+        alu_op = JMP;
+        load_ir_1 = 1'b0;  // khong cho load instruction moi
+        ar_load = 1'b0;
+        ar_mux = 1'b0;
+        rw_mem = 1'b0;
+        addr_mux = 1'b0;
+        load = 1'b1; // load preset
+        load_ir_2 = 1'b1; // tha
+    end
+    default: begin
+        alu_op = JMP;
+        load_ir_1 = 1'b1;
+        ar_load = 1'b0;
+        ar_mux = 1'b0;
+        rw_mem = 1'b0;
+        addr_mux = 1'b0;
+        load = 1'b0;
+        load_ir_2 = 1'b1; // tha
+    end
+endcase
 end
 
-end
+assign edge_detected = (reg0 ^ reg1) ? 1'b1 : 1'b0;
+
+assign {
+    o_alu_op,
+    o_ar_load,
+    o_ar_mux,
+    o_rw_mem,
+    o_addr_mux,
+    o_load,
+    o_load_ir_1,
+    o_load_ir_2
+} = edge_detected ? 
+{
+    alu_op,
+    ar_load,
+    ar_mux,
+    rw_mem,
+    addr_mux,
+    load,
+    load_ir_1,
+    load_ir_2
+} :
+{
+    default_alu_op,
+    default_ar_load,
+    default_ar_mux,
+    default_rw_mem,
+    default_addr_mux,
+    default_load,
+    default_load_ir_1,
+    default_load_ir_2
+};
 
 endmodule

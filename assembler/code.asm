@@ -3,7 +3,4 @@ add 0x1c
 sta
 sta
 sto 0x1e
-sta
-sta
-add 0x1e
 hlt
