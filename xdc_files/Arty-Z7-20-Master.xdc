@@ -4,7 +4,7 @@
 ## - rename the used ports (in each line, after get_ports) according to the top level signal names in the project
 
 ## Clock Signal
-#set_property -dict { PACKAGE_PIN H16    IOSTANDARD LVCMOS33 } [get_ports { clk }]; #IO_L13P_T2_MRCC_35 Sch=SYSCLK
+set_property -dict {PACKAGE_PIN H16 IOSTANDARD LVCMOS33} [get_ports clock_in]
 #create_clock -add -name sys_clk_pin -period 8.00 -waveform {0 4} [get_ports { clk }];#set
 
 ## Switches
@@ -26,7 +26,7 @@
 #set_property -dict { PACKAGE_PIN M14    IOSTANDARD LVCMOS33 } [get_ports { led[3] }]; #IO_L23P_T3_35 Sch=LED3
 
 ## Buttons
-#set_property -dict { PACKAGE_PIN D19    IOSTANDARD LVCMOS33 } [get_ports { btn[0] }]; #IO_L4P_T0_35 Sch=BTN0
+set_property -dict {PACKAGE_PIN D19 IOSTANDARD LVCMOS33} [get_ports reset]
 #set_property -dict { PACKAGE_PIN D20    IOSTANDARD LVCMOS33 } [get_ports { btn[1] }]; #IO_L4N_T0_35 Sch=BTN1
 #set_property -dict { PACKAGE_PIN L20    IOSTANDARD LVCMOS33 } [get_ports { btn[2] }]; #IO_L9N_T1_DQS_AD3N_35 Sch=BTN2
 #set_property -dict { PACKAGE_PIN L19    IOSTANDARD LVCMOS33 } [get_ports { btn[3] }]; #IO_L9P_T1_DQS_AD3P_35 Sch=BTN3
@@ -55,7 +55,7 @@
 #set_property -dict { PACKAGE_PIN R18   IOSTANDARD LVCMOS33 } [get_ports { aud_pwm }]; #IO_L20N_T3_34 Sch=AUD_PWM
 #set_property -dict { PACKAGE_PIN T17   IOSTANDARD LVCMOS33 } [get_ports { aud_sd }]; #IO_L20P_T3_34 Sch=AUD_SD
 
-## Crypto SDA 
+## Crypto SDA
 #set_property -dict { PACKAGE_PIN J15   IOSTANDARD LVCMOS33 } [get_ports { crypto_sda }]; #IO_25_35 Sch=CRYPTO_SDA
 
 ## HDMI RX Signals
@@ -138,12 +138,12 @@
 #set_property -dict { PACKAGE_PIN G19   IOSTANDARD LVCMOS33 } [get_ports { Vaux13_0_v_p }]; #IO_L18P_T2_AD13P_35   Sch=CK_AN5_P   ChipKit pin=A5
 ## ChipKit Outer Analog Header - as Digital I/O
 ## NOTE: The following constraints should be used when using these ports as digital I/O.
-#set_property -dict { PACKAGE_PIN Y11   IOSTANDARD LVCMOS33 } [get_ports { ck_a0 }]; #IO_L18N_T2_13      Sch=CK_A0
-#set_property -dict { PACKAGE_PIN Y12   IOSTANDARD LVCMOS33 } [get_ports { ck_a1 }]; #IO_L20P_T3_13      Sch=CK_A1
-#set_property -dict { PACKAGE_PIN W11   IOSTANDARD LVCMOS33 } [get_ports { ck_a2 }]; #IO_L18P_T2_13      Sch=CK_A2
-#set_property -dict { PACKAGE_PIN V11   IOSTANDARD LVCMOS33 } [get_ports { ck_a3 }]; #IO_L21P_T3_DQS_13  Sch=CK_A3
-#set_property -dict { PACKAGE_PIN T5    IOSTANDARD LVCMOS33 } [get_ports { ck_a4 }]; #IO_L19P_T3_13      Sch=CK_A4
-#set_property -dict { PACKAGE_PIN U10   IOSTANDARD LVCMOS33 } [get_ports { ck_a5 }]; #IO_L12N_T1_MRCC_13 Sch=CK_A5
+set_property -dict {PACKAGE_PIN Y11 IOSTANDARD LVCMOS33} [get_ports {simul_pc_2_address_mux[0]}]
+set_property -dict {PACKAGE_PIN Y12 IOSTANDARD LVCMOS33} [get_ports {simul_pc_2_address_mux[1]}]
+set_property -dict {PACKAGE_PIN W11 IOSTANDARD LVCMOS33} [get_ports {simul_pc_2_address_mux[2]}]
+set_property -dict {PACKAGE_PIN V11 IOSTANDARD LVCMOS33} [get_ports {simul_pc_2_address_mux[3]}]
+set_property -dict {PACKAGE_PIN T5 IOSTANDARD LVCMOS33} [get_ports {simul_pc_2_address_mux[4]}]
+#set_property -dict { PACKAGE_PIN U10   IOSTANDARD LVCMOS33 } [get_ports { simul_pc_2_address_mux[5] }]; #IO_L12N_T1_MRCC_13 Sch=CK_A5
 
 ## ChipKit Inner Analog Header - as Differential Analog Inputs
 ## NOTE: These ports can be used as differential analog inputs with voltages from 0-1.0V (ChipKit analog pins A6-A11) or as digital I/O.
@@ -183,3 +183,4 @@
 #set_property PACKAGE_PIN G18 [get_ports {netic20_g18}]; #IO_L16N_T2_35
 #set_property PACKAGE_PIN T9 [get_ports {netic20_t9}]; #IO_L12P_T1_MRCC_13
 #set_property PACKAGE_PIN U9 [get_ports {netic20_u9}]; #IO_L17P_T2_13
+

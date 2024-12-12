@@ -16,7 +16,7 @@ module ALU (
     input [7:0] inA,           
     input [7:0] inB,           
     input [2:0] opcode,        
-    output reg [7:0] result = 0,   
+    output reg [7:0] result,   
     output reg is_zero        
 );
 
@@ -28,6 +28,10 @@ localparam XOR_OP = 3'b100;
 localparam LDA = 3'b101;
 localparam STO = 3'b110;
 localparam JMP = 3'b111;
+
+//reg result = 8'b00000000;
+
+//assign o_result = result;
 
 always @(*) begin
     case (opcode)

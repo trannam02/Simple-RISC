@@ -33,6 +33,7 @@ read_mem C:/Users/NAM/RISC/RISC.srcs/sim_1/new/output.mem
 read_verilog -library xil_defaultlib {
   C:/Users/NAM/RISC/RISC.srcs/sources_1/new/ALU.v
   C:/Users/NAM/RISC/RISC.srcs/sources_1/new/bufferNbits.v
+  C:/Users/NAM/RISC/RISC.srcs/sources_1/new/clock_divider.v
   C:/Users/NAM/RISC/RISC.srcs/sources_1/new/controller.v
   C:/Users/NAM/RISC/RISC.srcs/sources_1/new/counterNbits.v
   C:/Users/NAM/RISC/RISC.srcs/sources_1/new/memory32x8_bi.v

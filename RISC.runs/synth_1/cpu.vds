@@ -2,8 +2,8 @@
 # Vivado v2018.2 (64-bit)
 # SW Build 2258646 on Thu Jun 14 20:03:12 MDT 2018
 # IP Build 2256618 on Thu Jun 14 22:10:49 MDT 2018
-# Start of session at: Thu Dec 12 00:32:23 2024
-# Process ID: 8568
+# Start of session at: Thu Dec 12 10:26:16 2024
+# Process ID: 10500
 # Current directory: C:/Users/NAM/RISC/RISC.runs/synth_1
 # Command line: vivado.exe -log cpu.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source cpu.tcl
 # Log file: C:/Users/NAM/RISC/RISC.runs/synth_1/cpu.vds
@@ -15,23 +15,26 @@ Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7z020'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020'
 INFO: Launching helper process for spawning children vivado processes
-INFO: Helper process launched with PID 11440 
+INFO: Helper process launched with PID 6832 
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:01 ; elapsed = 00:00:01 . Memory (MB): peak = 338.477 ; gain = 100.645
+Starting RTL Elaboration : Time (s): cpu = 00:00:01 ; elapsed = 00:00:01 . Memory (MB): peak = 338.059 ; gain = 100.262
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'cpu' [C:/Users/NAM/RISC/RISC.srcs/sources_1/new/cpu.v:23]
+INFO: [Synth 8-6157] synthesizing module 'clock_divider' [C:/Users/NAM/RISC/RISC.srcs/sources_1/new/clock_divider.v:23]
+	Parameter DIVISOR bound to: 28'b0000000000000000000000000010 
+INFO: [Synth 8-6155] done synthesizing module 'clock_divider' (1#1) [C:/Users/NAM/RISC/RISC.srcs/sources_1/new/clock_divider.v:23]
 INFO: [Synth 8-6157] synthesizing module 'counterNbits' [C:/Users/NAM/RISC/RISC.srcs/sources_1/new/counterNbits.v:26]
 	Parameter N bound to: 5 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'counterNbits' (1#1) [C:/Users/NAM/RISC/RISC.srcs/sources_1/new/counterNbits.v:26]
+INFO: [Synth 8-6155] done synthesizing module 'counterNbits' (2#1) [C:/Users/NAM/RISC/RISC.srcs/sources_1/new/counterNbits.v:26]
 INFO: [Synth 8-6157] synthesizing module 'registerNbits_neg' [C:/Users/NAM/RISC/RISC.srcs/sources_1/new/registerNbits_neg.v:24]
 	Parameter N bound to: 5 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'registerNbits_neg' (2#1) [C:/Users/NAM/RISC/RISC.srcs/sources_1/new/registerNbits_neg.v:24]
+INFO: [Synth 8-6155] done synthesizing module 'registerNbits_neg' (3#1) [C:/Users/NAM/RISC/RISC.srcs/sources_1/new/registerNbits_neg.v:24]
 INFO: [Synth 8-6157] synthesizing module 'muxNbits' [C:/Users/NAM/RISC/RISC.srcs/sources_1/new/muxNbits.v:4]
 	Parameter N bound to: 5 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'muxNbits' (3#1) [C:/Users/NAM/RISC/RISC.srcs/sources_1/new/muxNbits.v:4]
+INFO: [Synth 8-6155] done synthesizing module 'muxNbits' (4#1) [C:/Users/NAM/RISC/RISC.srcs/sources_1/new/muxNbits.v:4]
 INFO: [Synth 8-6157] synthesizing module 'memory32x8_bi' [C:/Users/NAM/RISC/RISC.srcs/sources_1/new/memory32x8_bi.v:7]
 INFO: [Synth 8-3876] $readmem data file 'output.mem' is read successfully [C:/Users/NAM/RISC/RISC.srcs/sources_1/new/memory32x8_bi.v:17]
-INFO: [Synth 8-6155] done synthesizing module 'memory32x8_bi' (4#1) [C:/Users/NAM/RISC/RISC.srcs/sources_1/new/memory32x8_bi.v:7]
+INFO: [Synth 8-6155] done synthesizing module 'memory32x8_bi' (5#1) [C:/Users/NAM/RISC/RISC.srcs/sources_1/new/memory32x8_bi.v:7]
 INFO: [Synth 8-6157] synthesizing module 'ALU' [C:/Users/NAM/RISC/RISC.srcs/sources_1/new/ALU.v:15]
 	Parameter HLT bound to: 3'b000 
 	Parameter SKZ bound to: 3'b001 
@@ -41,26 +44,26 @@ INFO: [Synth 8-6157] synthesizing module 'ALU' [C:/Users/NAM/RISC/RISC.srcs/sour
 	Parameter LDA bound to: 3'b101 
 	Parameter STO bound to: 3'b110 
 	Parameter JMP bound to: 3'b111 
-INFO: [Synth 8-226] default block is never used [C:/Users/NAM/RISC/RISC.srcs/sources_1/new/ALU.v:33]
-INFO: [Synth 8-6155] done synthesizing module 'ALU' (5#1) [C:/Users/NAM/RISC/RISC.srcs/sources_1/new/ALU.v:15]
+INFO: [Synth 8-226] default block is never used [C:/Users/NAM/RISC/RISC.srcs/sources_1/new/ALU.v:37]
+INFO: [Synth 8-6155] done synthesizing module 'ALU' (6#1) [C:/Users/NAM/RISC/RISC.srcs/sources_1/new/ALU.v:15]
 INFO: [Synth 8-6157] synthesizing module 'registerNbits_neg__parameterized0' [C:/Users/NAM/RISC/RISC.srcs/sources_1/new/registerNbits_neg.v:24]
 	Parameter N bound to: 8 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'registerNbits_neg__parameterized0' (5#1) [C:/Users/NAM/RISC/RISC.srcs/sources_1/new/registerNbits_neg.v:24]
+INFO: [Synth 8-6155] done synthesizing module 'registerNbits_neg__parameterized0' (6#1) [C:/Users/NAM/RISC/RISC.srcs/sources_1/new/registerNbits_neg.v:24]
 INFO: [Synth 8-6157] synthesizing module 'muxNbits__parameterized0' [C:/Users/NAM/RISC/RISC.srcs/sources_1/new/muxNbits.v:4]
 	Parameter N bound to: 8 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'muxNbits__parameterized0' (5#1) [C:/Users/NAM/RISC/RISC.srcs/sources_1/new/muxNbits.v:4]
+INFO: [Synth 8-6155] done synthesizing module 'muxNbits__parameterized0' (6#1) [C:/Users/NAM/RISC/RISC.srcs/sources_1/new/muxNbits.v:4]
 INFO: [Synth 8-6157] synthesizing module 'registerNbits' [C:/Users/NAM/RISC/RISC.srcs/sources_1/new/registerNbits.v:6]
 	Parameter N bound to: 8 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'registerNbits' (6#1) [C:/Users/NAM/RISC/RISC.srcs/sources_1/new/registerNbits.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'registerNbits' (7#1) [C:/Users/NAM/RISC/RISC.srcs/sources_1/new/registerNbits.v:6]
 INFO: [Synth 8-6157] synthesizing module 'bufferNbits' [C:/Users/NAM/RISC/RISC.srcs/sources_1/new/bufferNbits.v:5]
 	Parameter N bound to: 8 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'bufferNbits' (7#1) [C:/Users/NAM/RISC/RISC.srcs/sources_1/new/bufferNbits.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'bufferNbits' (8#1) [C:/Users/NAM/RISC/RISC.srcs/sources_1/new/bufferNbits.v:5]
 INFO: [Synth 8-6157] synthesizing module 'registerNbits_neg__parameterized1' [C:/Users/NAM/RISC/RISC.srcs/sources_1/new/registerNbits_neg.v:24]
 	Parameter N bound to: 9 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'registerNbits_neg__parameterized1' (7#1) [C:/Users/NAM/RISC/RISC.srcs/sources_1/new/registerNbits_neg.v:24]
+INFO: [Synth 8-6155] done synthesizing module 'registerNbits_neg__parameterized1' (8#1) [C:/Users/NAM/RISC/RISC.srcs/sources_1/new/registerNbits_neg.v:24]
 INFO: [Synth 8-6157] synthesizing module 'registerNbits_neg__parameterized2' [C:/Users/NAM/RISC/RISC.srcs/sources_1/new/registerNbits_neg.v:24]
 	Parameter N bound to: 3 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'registerNbits_neg__parameterized2' (7#1) [C:/Users/NAM/RISC/RISC.srcs/sources_1/new/registerNbits_neg.v:24]
+INFO: [Synth 8-6155] done synthesizing module 'registerNbits_neg__parameterized2' (8#1) [C:/Users/NAM/RISC/RISC.srcs/sources_1/new/registerNbits_neg.v:24]
 INFO: [Synth 8-6157] synthesizing module 'Controller' [C:/Users/NAM/RISC/RISC.srcs/sources_1/new/controller.v:1]
 	Parameter HLT bound to: 3'b000 
 	Parameter SKZ bound to: 3'b001 
@@ -70,14 +73,14 @@ INFO: [Synth 8-6157] synthesizing module 'Controller' [C:/Users/NAM/RISC/RISC.sr
 	Parameter LDA bound to: 3'b101 
 	Parameter STO bound to: 3'b110 
 	Parameter JMP bound to: 3'b111 
-INFO: [Synth 8-226] default block is never used [C:/Users/NAM/RISC/RISC.srcs/sources_1/new/controller.v:49]
-WARNING: [Synth 8-567] referenced signal 'reg0' should be on the sensitivity list [C:/Users/NAM/RISC/RISC.srcs/sources_1/new/controller.v:46]
-WARNING: [Synth 8-567] referenced signal 'is_zero' should be on the sensitivity list [C:/Users/NAM/RISC/RISC.srcs/sources_1/new/controller.v:46]
-INFO: [Synth 8-6155] done synthesizing module 'Controller' (8#1) [C:/Users/NAM/RISC/RISC.srcs/sources_1/new/controller.v:1]
-INFO: [Synth 8-6155] done synthesizing module 'cpu' (9#1) [C:/Users/NAM/RISC/RISC.srcs/sources_1/new/cpu.v:23]
+INFO: [Synth 8-226] default block is never used [C:/Users/NAM/RISC/RISC.srcs/sources_1/new/controller.v:56]
+WARNING: [Synth 8-567] referenced signal 'reg0' should be on the sensitivity list [C:/Users/NAM/RISC/RISC.srcs/sources_1/new/controller.v:53]
+WARNING: [Synth 8-567] referenced signal 'is_zero' should be on the sensitivity list [C:/Users/NAM/RISC/RISC.srcs/sources_1/new/controller.v:53]
+INFO: [Synth 8-6155] done synthesizing module 'Controller' (9#1) [C:/Users/NAM/RISC/RISC.srcs/sources_1/new/controller.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'cpu' (10#1) [C:/Users/NAM/RISC/RISC.srcs/sources_1/new/cpu.v:23]
 WARNING: [Synth 8-3331] design Controller has unconnected port clk
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:01 ; elapsed = 00:00:02 . Memory (MB): peak = 393.332 ; gain = 155.500
+Finished RTL Elaboration : Time (s): cpu = 00:00:01 ; elapsed = 00:00:02 . Memory (MB): peak = 392.570 ; gain = 154.773
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -90,10 +93,10 @@ Report Check Netlist:
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:01 ; elapsed = 00:00:02 . Memory (MB): peak = 393.332 ; gain = 155.500
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:01 ; elapsed = 00:00:02 . Memory (MB): peak = 392.570 ; gain = 154.773
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:01 ; elapsed = 00:00:02 . Memory (MB): peak = 393.332 ; gain = 155.500
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:01 ; elapsed = 00:00:02 . Memory (MB): peak = 392.570 ; gain = 154.773
 ---------------------------------------------------------------------------------
 INFO: [Device 21-403] Loading part xc7z020clg400-1
 INFO: [Project 1-570] Preparing netlist for logic optimization
@@ -102,33 +105,34 @@ Processing XDC Constraints
 Initializing timing engine
 Parsing XDC File [C:/Users/NAM/RISC/xdc_files/Arty-Z7-20-Master.xdc]
 Finished Parsing XDC File [C:/Users/NAM/RISC/xdc_files/Arty-Z7-20-Master.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Users/NAM/RISC/xdc_files/Arty-Z7-20-Master.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/cpu_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/cpu_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Completed Processing XDC Constraints
 
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-WARNING: [Constraints 18-5210] No constraint will be written out.
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.025 . Memory (MB): peak = 739.656 ; gain = 1.629
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 750.762 ; gain = 0.000
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:04 ; elapsed = 00:00:09 . Memory (MB): peak = 739.656 ; gain = 501.824
+Finished Constraint Validation : Time (s): cpu = 00:00:04 ; elapsed = 00:00:09 . Memory (MB): peak = 750.762 ; gain = 512.965
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7z020clg400-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:04 ; elapsed = 00:00:09 . Memory (MB): peak = 739.656 ; gain = 501.824
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:04 ; elapsed = 00:00:09 . Memory (MB): peak = 750.762 ; gain = 512.965
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:04 ; elapsed = 00:00:09 . Memory (MB): peak = 739.656 ; gain = 501.824
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:04 ; elapsed = 00:00:09 . Memory (MB): peak = 750.762 ; gain = 512.965
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-5546] ROM "is_zero0" won't be mapped to RAM because it is too sparse
-WARNING: [Synth 8-327] inferring latch for variable 'result_reg' [C:/Users/NAM/RISC/RISC.srcs/sources_1/new/ALU.v:35]
+WARNING: [Synth 8-327] inferring latch for variable 'result_reg' [C:/Users/NAM/RISC/RISC.srcs/sources_1/new/ALU.v:39]
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:04 ; elapsed = 00:00:09 . Memory (MB): peak = 739.656 ; gain = 501.824
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:04 ; elapsed = 00:00:09 . Memory (MB): peak = 750.762 ; gain = 512.965
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -151,15 +155,16 @@ Detailed RTL Component Info :
 	                8 Bit    Registers := 4     
 	                5 Bit    Registers := 2     
 	                3 Bit    Registers := 1     
+	                1 Bit    Registers := 2     
 +---RAMs : 
 	              256 Bit         RAMs := 1     
 +---Muxes : 
 	   2 Input     10 Bit        Muxes := 1     
 	   2 Input      8 Bit        Muxes := 1     
-	   2 Input      5 Bit        Muxes := 2     
+	   2 Input      5 Bit        Muxes := 4     
 	   8 Input      3 Bit        Muxes := 1     
 	   2 Input      2 Bit        Muxes := 1     
-	   2 Input      1 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 4     
 	   8 Input      1 Bit        Muxes := 8     
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
@@ -172,14 +177,20 @@ Module cpu
 Detailed RTL Component Info : 
 +---Muxes : 
 	   2 Input      2 Bit        Muxes := 1     
+Module clock_divider 
+Detailed RTL Component Info : 
++---Registers : 
+	                1 Bit    Registers := 1     
 Module counterNbits 
 Detailed RTL Component Info : 
 +---Adders : 
 	   2 Input      5 Bit       Adders := 1     
 +---Registers : 
 	                5 Bit    Registers := 1     
+	                1 Bit    Registers := 1     
 +---Muxes : 
-	   2 Input      5 Bit        Muxes := 1     
+	   2 Input      5 Bit        Muxes := 3     
+	   2 Input      1 Bit        Muxes := 3     
 Module registerNbits_neg 
 Detailed RTL Component Info : 
 +---Registers : 
@@ -250,12 +261,12 @@ Warning: Parallel synthesis criteria is not met
 INFO: [Synth 8-3886] merging instance 'REG_CONTROL_EX/out_reg[6]' (FDR_1) to 'REG_CONTROL_EX/out_reg[0]'
 INFO: [Synth 8-3886] merging instance 'REG_CONTROL_EX/out_reg[7]' (FDR_1) to 'REG_CONTROL_EX/out_reg[0]'
 INFO: [Synth 8-3886] merging instance 'REG_CONTROL_EX/out_reg[8]' (FDR_1) to 'REG_CONTROL_EX/out_reg[0]'
-INFO: [Synth 8-3886] merging instance 'REG_CONTROL_EX/out_reg[4]' (FDR_1) to 'REG_CONTROL_EX/out_reg[2]'
-INFO: [Synth 8-3886] merging instance 'REG_CONTROL_EX/out_reg[5]' (FDR_1) to 'REG_CONTROL_EX/out_reg[2]'
-INFO: [Synth 8-3886] merging instance 'REG_CONTROL_EX/out_reg[0]' (FDR_1) to 'REG_CONTROL_EX/out_reg[1]'
+INFO: [Synth 8-3886] merging instance 'REG_CONTROL_EX/out_reg[2]' (FDR_1) to 'REG_CONTROL_EX/out_reg[3]'
+INFO: [Synth 8-3886] merging instance 'REG_CONTROL_EX/out_reg[4]' (FDR_1) to 'REG_CONTROL_EX/out_reg[3]'
+INFO: [Synth 8-3886] merging instance 'REG_CONTROL_EX/out_reg[5]' (FDR_1) to 'REG_CONTROL_EX/out_reg[3]'
 INFO: [Synth 8-3886] merging instance 'REG_CONTROL_WB/out_reg[1]' (FDR_1) to 'REG_CONTROL_WB/out_reg[2]'
-INFO: [Synth 8-3886] merging instance 'REG_CONTROL_EX/out_reg[3]' (FDR_1) to 'REG_CONTROL_EX/out_reg[2]'
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\REG_CONTROL_EX/out_reg[2] )
+INFO: [Synth 8-3886] merging instance 'REG_CONTROL_EX/out_reg[0]' (FDR_1) to 'REG_CONTROL_EX/out_reg[1]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\REG_CONTROL_EX/out_reg[3] )
 WARNING: [Synth 8-3332] Sequential element (ALU1/result_reg[7]) is unused and will be removed from module cpu.
 WARNING: [Synth 8-3332] Sequential element (ALU1/result_reg[6]) is unused and will be removed from module cpu.
 WARNING: [Synth 8-3332] Sequential element (ALU1/result_reg[5]) is unused and will be removed from module cpu.
@@ -264,8 +275,26 @@ WARNING: [Synth 8-3332] Sequential element (ALU1/result_reg[3]) is unused and wi
 WARNING: [Synth 8-3332] Sequential element (ALU1/result_reg[2]) is unused and will be removed from module cpu.
 WARNING: [Synth 8-3332] Sequential element (ALU1/result_reg[1]) is unused and will be removed from module cpu.
 WARNING: [Synth 8-3332] Sequential element (ALU1/result_reg[0]) is unused and will be removed from module cpu.
-WARNING: [Synth 8-3332] Sequential element (REG_CONTROL_EX/out_reg[2]) is unused and will be removed from module cpu.
+WARNING: [Synth 8-3332] Sequential element (REG_INS/out_reg[7]) is unused and will be removed from module cpu.
+WARNING: [Synth 8-3332] Sequential element (REG_INS/out_reg[6]) is unused and will be removed from module cpu.
+WARNING: [Synth 8-3332] Sequential element (REG_INS/out_reg[5]) is unused and will be removed from module cpu.
+WARNING: [Synth 8-3332] Sequential element (REG_INS/out_reg[4]) is unused and will be removed from module cpu.
+WARNING: [Synth 8-3332] Sequential element (REG_INS/out_reg[3]) is unused and will be removed from module cpu.
+WARNING: [Synth 8-3332] Sequential element (REG_INS/out_reg[2]) is unused and will be removed from module cpu.
+WARNING: [Synth 8-3332] Sequential element (REG_INS/out_reg[1]) is unused and will be removed from module cpu.
+WARNING: [Synth 8-3332] Sequential element (REG_INS/out_reg[0]) is unused and will be removed from module cpu.
+WARNING: [Synth 8-3332] Sequential element (REG_CONTROL_EX/out_reg[3]) is unused and will be removed from module cpu.
+WARNING: [Synth 8-3332] Sequential element (REG_CONTROL_EX/out_reg[1]) is unused and will be removed from module cpu.
+WARNING: [Synth 8-3332] Sequential element (MEM/data_out_reg[7]) is unused and will be removed from module cpu.
+WARNING: [Synth 8-3332] Sequential element (MEM/data_out_reg[6]) is unused and will be removed from module cpu.
+WARNING: [Synth 8-3332] Sequential element (MEM/data_out_reg[5]) is unused and will be removed from module cpu.
+WARNING: [Synth 8-3332] Sequential element (MEM/data_out_reg[4]) is unused and will be removed from module cpu.
+WARNING: [Synth 8-3332] Sequential element (MEM/data_out_reg[3]) is unused and will be removed from module cpu.
+WARNING: [Synth 8-3332] Sequential element (MEM/data_out_reg[2]) is unused and will be removed from module cpu.
+WARNING: [Synth 8-3332] Sequential element (MEM/data_out_reg[1]) is unused and will be removed from module cpu.
+WARNING: [Synth 8-3332] Sequential element (MEM/data_out_reg[0]) is unused and will be removed from module cpu.
 WARNING: [Synth 8-3332] Sequential element (REG_CONTROL_WB/out_reg[2]) is unused and will be removed from module cpu.
+WARNING: [Synth 8-3332] Sequential element (REG_CONTROL_WB/out_reg[0]) is unused and will be removed from module cpu.
 WARNING: [Synth 8-3332] Sequential element (REG_RESULT/out_reg[7]) is unused and will be removed from module cpu.
 WARNING: [Synth 8-3332] Sequential element (REG_RESULT/out_reg[6]) is unused and will be removed from module cpu.
 WARNING: [Synth 8-3332] Sequential element (REG_RESULT/out_reg[5]) is unused and will be removed from module cpu.
@@ -283,22 +312,7 @@ WARNING: [Synth 8-3332] Sequential element (REG_ACC/out_reg[2]) is unused and wi
 WARNING: [Synth 8-3332] Sequential element (REG_ACC/out_reg[1]) is unused and will be removed from module cpu.
 WARNING: [Synth 8-3332] Sequential element (REG_ACC/out_reg[0]) is unused and will be removed from module cpu.
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:04 ; elapsed = 00:00:10 . Memory (MB): peak = 739.656 ; gain = 501.824
----------------------------------------------------------------------------------
----------------------------------------------------------------------------------
-Start ROM, RAM, DSP and Shift Register Reporting
----------------------------------------------------------------------------------
-
-Distributed RAM: Preliminary Mapping  Report (see note below)
-+------------+----------------+-----------+----------------------+----------------+
-|Module Name | RTL Object     | Inference | Size (Depth x Width) | Primitives     | 
-+------------+----------------+-----------+----------------------+----------------+
-|cpu         | MEM/memory_reg | Implied   | 32 x 8               | RAM32X1S x 8   | 
-+------------+----------------+-----------+----------------------+----------------+
-
-Note: The table above is a preliminary report that shows the Distributed RAMs at the current stage of the synthesis flow. Some Distributed RAMs may be reimplemented as non Distributed RAM primitives later in the synthesis flow. Multiple instantiated RAMs are reported only once.
----------------------------------------------------------------------------------
-Finished ROM, RAM, DSP and Shift Register Reporting
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:04 ; elapsed = 00:00:10 . Memory (MB): peak = 750.762 ; gain = 512.965
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -310,27 +324,13 @@ Report RTL Partitions:
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:08 ; elapsed = 00:00:16 . Memory (MB): peak = 745.129 ; gain = 507.297
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:06 ; elapsed = 00:00:16 . Memory (MB): peak = 750.762 ; gain = 512.965
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:08 ; elapsed = 00:00:16 . Memory (MB): peak = 745.203 ; gain = 507.371
----------------------------------------------------------------------------------
----------------------------------------------------------------------------------
-Start ROM, RAM, DSP and Shift Register Reporting
----------------------------------------------------------------------------------
-
-Distributed RAM: Final Mapping  Report
-+------------+----------------+-----------+----------------------+----------------+
-|Module Name | RTL Object     | Inference | Size (Depth x Width) | Primitives     | 
-+------------+----------------+-----------+----------------------+----------------+
-|cpu         | MEM/memory_reg | Implied   | 32 x 8               | RAM32X1S x 8   | 
-+------------+----------------+-----------+----------------------+----------------+
-
----------------------------------------------------------------------------------
-Finished ROM, RAM, DSP and Shift Register Reporting
+Finished Timing Optimization : Time (s): cpu = 00:00:06 ; elapsed = 00:00:16 . Memory (MB): peak = 750.762 ; gain = 512.965
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -342,7 +342,7 @@ Report RTL Partitions:
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:08 ; elapsed = 00:00:16 . Memory (MB): peak = 754.770 ; gain = 516.938
+Finished Technology Mapping : Time (s): cpu = 00:00:06 ; elapsed = 00:00:16 . Memory (MB): peak = 767.305 ; gain = 529.508
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -366,7 +366,7 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:08 ; elapsed = 00:00:16 . Memory (MB): peak = 754.770 ; gain = 516.938
+Finished IO Insertion : Time (s): cpu = 00:00:07 ; elapsed = 00:00:16 . Memory (MB): peak = 767.305 ; gain = 529.508
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -379,7 +379,7 @@ Report Check Netlist:
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:08 ; elapsed = 00:00:16 . Memory (MB): peak = 754.770 ; gain = 516.938
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:07 ; elapsed = 00:00:16 . Memory (MB): peak = 767.305 ; gain = 529.508
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -391,25 +391,25 @@ Report RTL Partitions:
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:08 ; elapsed = 00:00:16 . Memory (MB): peak = 754.770 ; gain = 516.938
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:07 ; elapsed = 00:00:16 . Memory (MB): peak = 767.305 ; gain = 529.508
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:08 ; elapsed = 00:00:16 . Memory (MB): peak = 754.770 ; gain = 516.938
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:07 ; elapsed = 00:00:16 . Memory (MB): peak = 767.305 ; gain = 529.508
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:08 ; elapsed = 00:00:16 . Memory (MB): peak = 754.770 ; gain = 516.938
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:07 ; elapsed = 00:00:16 . Memory (MB): peak = 767.305 ; gain = 529.508
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:08 ; elapsed = 00:00:16 . Memory (MB): peak = 754.770 ; gain = 516.938
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:07 ; elapsed = 00:00:16 . Memory (MB): peak = 767.305 ; gain = 529.508
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -422,55 +422,50 @@ Report BlackBoxes:
 +-+--------------+----------+
 
 Report Cell Usage: 
-+------+---------+------+
-|      |Cell     |Count |
-+------+---------+------+
-|1     |BUFG     |     1|
-|2     |LUT1     |    17|
-|3     |LUT2     |     2|
-|4     |LUT3     |     1|
-|5     |LUT4     |     1|
-|6     |LUT5     |     1|
-|7     |RAM32X1S |     8|
-|8     |FDRE     |    28|
-|9     |IBUF     |     2|
-|10    |OBUF     |    27|
-|11    |OBUFT    |     8|
-+------+---------+------+
++------+-------+------+
+|      |Cell   |Count |
++------+-------+------+
+|1     |BUFG   |     1|
+|2     |CARRY4 |     7|
+|3     |LUT1   |     1|
+|4     |LUT3   |     4|
+|5     |LUT4   |     2|
+|6     |LUT5   |     5|
+|7     |LUT6   |     9|
+|8     |FDRE   |    40|
+|9     |IBUF   |     2|
+|10    |OBUF   |     5|
++------+-------+------+
 
 Report Instance Areas: 
-+------+-----------------+----------------------------------+------+
-|      |Instance         |Module                            |Cells |
-+------+-----------------+----------------------------------+------+
-|1     |top              |                                  |    96|
-|2     |  COUNTER        |counterNbits                      |    10|
-|3     |  MEM            |memory32x8_bi                     |    24|
-|4     |  REG_CONTROL_EX |registerNbits_neg__parameterized1 |     2|
-|5     |  REG_CONTROL_WB |registerNbits_neg__parameterized2 |     1|
-|6     |  REG_INS        |registerNbits                     |     8|
-|7     |  REG_PC         |registerNbits_neg                 |     5|
-+------+-----------------+----------------------------------+------+
++------+----------------+------------------+------+
+|      |Instance        |Module            |Cells |
++------+----------------+------------------+------+
+|1     |top             |                  |    76|
+|2     |  CLOCK_DIVIDER |clock_divider     |    48|
+|3     |  COUNTER       |counterNbits      |    15|
+|4     |  REG_PC        |registerNbits_neg |     5|
++------+----------------+------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:08 ; elapsed = 00:00:16 . Memory (MB): peak = 754.770 ; gain = 516.938
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:07 ; elapsed = 00:00:16 . Memory (MB): peak = 767.305 ; gain = 529.508
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 27 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:05 ; elapsed = 00:00:10 . Memory (MB): peak = 754.770 ; gain = 170.613
-Synthesis Optimization Complete : Time (s): cpu = 00:00:08 ; elapsed = 00:00:16 . Memory (MB): peak = 754.770 ; gain = 516.938
+Synthesis finished with 0 errors, 0 critical warnings and 45 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:04 ; elapsed = 00:00:11 . Memory (MB): peak = 767.305 ; gain = 171.316
+Synthesis Optimization Complete : Time (s): cpu = 00:00:07 ; elapsed = 00:00:16 . Memory (MB): peak = 767.305 ; gain = 529.508
 INFO: [Project 1-571] Translating synthesized netlist
-INFO: [Netlist 29-17] Analyzing 10 Unisim elements for replacement
+INFO: [Netlist 29-17] Analyzing 9 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
 INFO: [Project 1-111] Unisim Transformation Summary:
-  A total of 8 instances were transformed.
-  RAM32X1S => RAM32X1S (RAMS32): 8 instances
+No Unisim elements were transformed.
 
 INFO: [Common 17-83] Releasing license: Synthesis
-50 Infos, 31 Warnings, 0 Critical Warnings and 0 Errors encountered.
+53 Infos, 48 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:09 ; elapsed = 00:00:18 . Memory (MB): peak = 768.184 ; gain = 543.527
+synth_design: Time (s): cpu = 00:00:08 ; elapsed = 00:00:18 . Memory (MB): peak = 769.980 ; gain = 545.336
 WARNING: [Constraints 18-5210] No constraint will be written out.
 INFO: [Common 17-1381] The checkpoint 'C:/Users/NAM/RISC/RISC.runs/synth_1/cpu.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file cpu_utilization_synth.rpt -pb cpu_utilization_synth.pb
-report_utilization: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.015 . Memory (MB): peak = 768.184 ; gain = 0.000
-INFO: [Common 17-206] Exiting Vivado at Thu Dec 12 00:32:43 2024...
+report_utilization: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.015 . Memory (MB): peak = 769.980 ; gain = 0.000
+INFO: [Common 17-206] Exiting Vivado at Thu Dec 12 10:26:36 2024...

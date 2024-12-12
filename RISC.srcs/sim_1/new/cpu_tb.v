@@ -38,16 +38,17 @@ end;
 
 initial begin
     reset = 1'b1;
-    #1 reset = 1'b0;
-    #200 $finish;
+    #50 reset = 1'b1;
+    #51 reset = 1'b0;
+    #500 $finish;
 end;
 cpu MY_CPU (
-    .clock(clock),
+    .clock_in(clock),
     .reset(reset),
-    .simul_address_mux_2_mem(address_mux_out),
+//    .simul_address_mux_2_mem(address_mux_out),
     .simul_mem_in_out(mem_in_out),
-    .simul_sig_rw_mem(mem_rw),
-    .simul_AR_2_alu(accumulator_reg),
+//    .simul_sig_rw_mem(mem_rw),
+//    .simul_AR_2_alu(accumulator_reg),
     .simul_pc_2_address_mux(pc),
     .simul_IR_out(IR)
 );

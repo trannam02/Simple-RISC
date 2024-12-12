@@ -21,15 +21,17 @@
 
 
 module cpu(
-    input clock,
+    input clock_in,
     input reset,
-    output [4:0] simul_address_mux_2_mem,
-    output [7:0] simul_mem_in_out,
-    output simul_sig_rw_mem,
-    output [7:0] simul_AR_2_alu,
-    output [4:0] simul_pc_2_address_mux,
-    output [7:0] simul_IR_out
+//    output [4:0] simul_address_mux_2_mem,
+//    output [7:0] simul_mem_in_out,
+//    output simul_sig_rw_mem,
+//    output [7:0] simul_AR_2_alu,
+    output [4:0] simul_pc_2_address_mux
+//    output [7:0] simul_IR_out
 );
+
+wire clock;
 
 wire [4:0] counter_2_pc;
 wire [4:0] pc_2_address_mux;
@@ -47,6 +49,7 @@ wire is_zero_from_acc;
 
 wire IR_load;
 
+wire counter_clock;
 // control signal wire
 wire [2:0] sig_alu_op;
 wire sig_ar_load;
@@ -56,6 +59,7 @@ wire sig_addr_mux;
 wire sig_load;
 wire sig_load_ir_1;
 wire sig_load_ir_2;
+wire sig_stop_counter;
 
 // EX signal wire
 wire [2:0] sig_ex_alu_op;
@@ -78,13 +82,16 @@ wire sig_wb_load_ir_1;
 wire sig_wb_load_ir_2;
 
 // connect to see output
-assign simul_sig_rw_mem = sig_rw_mem;
+//assign simul_sig_rw_mem = sig_rw_mem;
 
-assign simul_address_mux_2_mem = address_mux_2_mem;
-assign simul_mem_in_out = mem_in_out;
-assign simul_AR_2_alu = AR_2_alu;
+//assign simul_address_mux_2_mem = address_mux_2_mem;
+//assign simul_mem_in_out = mem_in_out;
+//assign simul_AR_2_alu = AR_2_alu;
 assign simul_pc_2_address_mux = pc_2_address_mux;
-assign simul_IR_out = IR_out;
+
+clock_divider CLOCK_DIVIDER(.clock_in(clock_in), .clock_out(clock));
+
+//assign simul_IR_out = IR_out;
 
 counterNbits COUNTER(                   // COUNTER
     .out(counter_2_pc),
@@ -219,6 +226,7 @@ Controller CONTROLLER (
     .o_load(sig_load),
     .o_load_ir_1(sig_load_ir_1),
     .o_load_ir_2(sig_load_ir_2)
+//    .o_stop_counter(sig_stop_counter)
 );
 endmodule
 
