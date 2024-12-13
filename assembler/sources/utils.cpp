@@ -22,7 +22,7 @@ void writeFile(char * fileName, vector<unsigned char> & instructions, vector<uns
     for(int i = 0; i < instructions.size(); i++){
         file << ith(instructions[i], 2) << endl;
     };
-    for(int i = instructions.size(); i < 26; i++){
+    for(int i = instructions.size(); i < 28; i++){
         file << ith(0, 2) << endl;
     };
     for(int i = 0; i < datas.size(); i++){

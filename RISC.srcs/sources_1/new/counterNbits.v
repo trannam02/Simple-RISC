@@ -29,31 +29,24 @@ module counterNbits
     input [N-1:0] preset,
     output reg [N-1:0] out = 0
 );
-//always @(posedge clk) begin
-//    if(!load && !rst) begin
-//        out = out + 1;
-//    end
-//end
-//always @(load, rst) begin
-//    if(rst)
-//        out = 0;
-//    else if(load)
-//        out = preset;
-//end
 reg stop = 0;
 always@(posedge clk) 
-    if(stop)
-        out <= 5'd25;
-  else begin
-    if(rst)    //Set Counter to Zero
+ 
+  begin
+    if(rst) begin   //Set Counter to Zero
       out <= 0;
+      stop <= 0;
+    end
+   else if(stop)
+           out <= 5'd25;
     else if(load)    //load the counter with preset
       out <= preset;
     else 
-      
+      begin
       if(out >= 5'd25)
         stop <= 1;
       else
         out <= out + 1;
+      end
   end
 endmodule

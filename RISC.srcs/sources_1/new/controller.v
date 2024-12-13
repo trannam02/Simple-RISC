@@ -11,7 +11,6 @@ module Controller(
     output o_load,
     output o_load_ir_1, // from ex
     output o_load_ir_2  // from wb
-//    output o_stop_counter
 );
 
 localparam HLT = 3'b000;
@@ -32,7 +31,6 @@ reg addr_mux = 0;
 reg load = 0;
 reg load_ir_1 = 1; // from ex
 reg load_ir_2 = 1;  // from wb
-//reg stop_counter = 0;
 
 // default signal
 reg [2:0] default_alu_op = 3'b111;
@@ -43,7 +41,6 @@ reg default_addr_mux = 0;
 reg default_load = 0;
 reg default_load_ir_1 = 1; // from ex
 reg default_load_ir_2 = 1;  // from wb
-//reg default_stop_counter = 0;
 
 // edge detecter
 reg [2:0] reg0 = 0;
@@ -63,7 +60,6 @@ case(opcode)
         addr_mux = 1'b0;
         load = 1'b0;
         load_ir_2 = 1'b0;
-//        stop_counter = 1'b1;
     end
     SKZ: begin // SKZ
         alu_op = 2'b000;
@@ -77,7 +73,6 @@ case(opcode)
         addr_mux = 1'b0;
         load = 1'b0;
         load_ir_2 = 1'b1;
-//         stop_counter = 1'b0;
     end
     ADD: begin // ADD
         alu_op = ADD;
@@ -88,7 +83,6 @@ case(opcode)
         addr_mux = 1'b1;
         load = 1'b0;
         load_ir_2 = 1'b0;
-//        stop_counter = 1'b0;
     end
     AND: begin // AND
         alu_op = AND;
@@ -99,7 +93,6 @@ case(opcode)
         addr_mux = 1'b1;
         load = 1'b0;
         load_ir_2 = 1'b0;
-//        stop_counter = 1'b0;
     end
     XOR: begin // XOR
         alu_op = XOR;
@@ -110,7 +103,6 @@ case(opcode)
         addr_mux = 1'b1;
         load = 1'b0;
         load_ir_2 = 1'b0;
-//        stop_counter = 1'b0;
     end
     LDA: begin // LDA
         alu_op = LDA;
@@ -121,7 +113,6 @@ case(opcode)
         addr_mux = 1'b1;
         load = 1'b0;
         load_ir_2 = 1'b0;
-//        stop_counter = 1'b0;
     end
     STO: begin // STO
         alu_op = STO;
@@ -132,7 +123,6 @@ case(opcode)
         addr_mux = 1'b1;
         load = 1'b0;
         load_ir_2 = 1'b0; // chan
-//        stop_counter = 1'b0;
     end
     JMP: begin // JMP
         alu_op = JMP;
@@ -143,7 +133,6 @@ case(opcode)
         addr_mux = 1'b0;
         load = 1'b1; // load preset
         load_ir_2 = 1'b1; // tha
-//        stop_counter = 1'b0;
     end
     default: begin
         alu_op = JMP;
@@ -154,15 +143,11 @@ case(opcode)
         addr_mux = 1'b0;
         load = 1'b0;
         load_ir_2 = 1'b1; // tha
-//        stop_counter = 1'b0;
     end
 endcase
 end
 
 assign edge_detected = (reg0 ^ reg1) ? 1'b1 : 1'b0;
-
-wire is_hlt;
-//assign is_hlt = ar_mux & ~ar_load;
 
 assign {
     o_alu_op,
@@ -173,7 +158,6 @@ assign {
     o_load,
     o_load_ir_1,
     o_load_ir_2
-//    o_stop_counter
 } = edge_detected ? 
 {
     alu_op,
@@ -184,7 +168,6 @@ assign {
     load,
     load_ir_1,
     load_ir_2
-//    stop_counter
 } :
 {
     default_alu_op,
@@ -195,7 +178,6 @@ assign {
     default_load,
     default_load_ir_1,
     default_load_ir_2
-//    default_stop_counter
 };
 
 endmodule

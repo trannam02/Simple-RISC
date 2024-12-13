@@ -6,7 +6,7 @@
 *******************************/
 module memory32x8_bi
 (
-    input clk, rw, en,
+    input clk, rw, en, rst,
     input [4:0] addr,
     inout [7:0] data
 );
@@ -19,9 +19,11 @@ end
 
 assign data = (en & !rw) ? (data_out) : 8'bz;
 
-always @(posedge clk) begin
+always @(posedge clk or posedge rst) begin
     if(en)
-        if(!rw)
+        if(rst)
+            data_out = 0;
+        else if(!rw)
             data_out = memory[addr];
         else if(rw)
             memory[addr] = data; 

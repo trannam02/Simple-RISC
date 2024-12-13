@@ -23,12 +23,15 @@
 module cpu(
     input clock_in,
     input reset,
+    output [7:0] hehe
 //    output [4:0] simul_address_mux_2_mem,
 //    output [7:0] simul_mem_in_out,
 //    output simul_sig_rw_mem,
 //    output [7:0] simul_AR_2_alu,
-    output [4:0] simul_pc_2_address_mux
-//    output [7:0] simul_IR_out
+//    output [4:0] simul_pc_2_address_mux,
+//    output o_sig_load_ir_1,
+//    output o_sig_load_ir_2,
+//    output [2:0] o_sig_alu_op
 );
 
 wire clock;
@@ -87,11 +90,26 @@ wire sig_wb_load_ir_2;
 //assign simul_address_mux_2_mem = address_mux_2_mem;
 //assign simul_mem_in_out = mem_in_out;
 //assign simul_AR_2_alu = AR_2_alu;
-assign simul_pc_2_address_mux = pc_2_address_mux;
-
-clock_divider CLOCK_DIVIDER(.clock_in(clock_in), .clock_out(clock));
-
+//assign simul_pc_2_address_mux = pc_2_address_mux;
 //assign simul_IR_out = IR_out;
+
+
+//assign o_sig_load_ir_1 = sig_load_ir_1;
+//assign o_sig_load_ir_2 = sig_load_ir_2;
+//assign o_sig_alu_op = sig_alu_op;
+clock_divider CLOCK_DIVIDER(.clock_in(clock_in), .clock_out(clock));
+//assign divided_clock = clock;
+
+
+//counterNbits COUNTER(                   // COUNTER
+//    .out(o_counter_2_pc),
+//    .clk(clock),
+//    .rst(reset),
+//    .load(1'b1),
+//    .preset(5'b0001)
+//);
+
+assign hehe = mem_in_out;
 
 counterNbits COUNTER(                   // COUNTER
     .out(counter_2_pc),
@@ -119,6 +137,7 @@ muxNbits #(.N(5)) MUX_ADDRESS (         // ADDRESS MUX
 memory32x8_bi MEM (                     // MEMORY
     .data(mem_in_out),
     .clk(clock),
+    .rst(reset),
     .en(1'b1),
     .rw(sig_ex_rw_mem),
     .addr(address_mux_2_mem)
@@ -182,7 +201,7 @@ registerNbits_neg #(.N(9)) REG_CONTROL_EX ( // CONTROL EXECUTE
         sig_ex_load_ir_2
     }),
     .clk(clock),
-    .rst(reset),
+    .rst(1'b0),                         // edited
     .load(1'b1),
     .in({
         sig_alu_op,
@@ -202,7 +221,7 @@ registerNbits_neg #(.N(3)) REG_CONTROL_WB ( // CONTROL WRITEBACK REG
         sig_wb_load_ir_2
     }),
     .clk(clock),
-    .rst(reset),
+    .rst(1'b0),                      // edited
     .load(1'b1),
     .in({
         sig_ex_ar_load,
@@ -226,7 +245,6 @@ Controller CONTROLLER (
     .o_load(sig_load),
     .o_load_ir_1(sig_load_ir_1),
     .o_load_ir_2(sig_load_ir_2)
-//    .o_stop_counter(sig_stop_counter)
 );
 endmodule
 
