@@ -1,28 +1,29 @@
-jmp XX
-
-
-
-XX jmp JMPOK
-
-JMPOK lda 0x1c // load data 1 
+lda 0x1d
+sta
+sta
 skz
 hlt
-lda 0x1d // load data 2
+lda 0x1f
+sta
+sta
 skz
-jmp  SKZ OK
+jmp 0x0c
+sta
 hlt
-
-SKZ OK: sto 0x1e // store vao temp
+lda 0x1d
 sta
 sta
-lda 0x1c
-and 0x1d // and voi 1
+skz
+hlt
+xor 0x1f
 sta
-sto 0x1e
+sta
+skz
+jmp 0x17
+hlt
+xor 0x1f
 sta
 sta
-lda 0x1e
-and 0x1c
-sta
-skz // tai vi tri 0E cua thay
+skz
+hlt
 hlt

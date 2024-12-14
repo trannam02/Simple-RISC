@@ -19,7 +19,7 @@ Compiling module xil_defaultlib.registerNbits_neg
 Compiling module xil_defaultlib.muxNbits(N=8)
 Compiling module xil_defaultlib.registerNbits
 Compiling module xil_defaultlib.bufferNbits
-Compiling module xil_defaultlib.registerNbits_neg(N=9)
+Compiling module xil_defaultlib.control_ex_test
 Compiling module xil_defaultlib.registerNbits_neg(N=3)
 Compiling module xil_defaultlib.Controller
 Compiling module xil_defaultlib.cpu

@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 12/12/2024 09:08:37 AM
+// Create Date: 12/14/2024 10:58:52 PM
 // Design Name: 
-// Module Name: clock_divider
+// Module Name: control_ex_test
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,17 +20,28 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module clock_divider(
-    input clock_in,
-    output reg clock_out
+module control_ex_test
+#(
+    parameter N = 9
+)(
+    input [N-1:0] in,
+    input clk, rst, load,
+    output [N-1:0] out
 );
-    reg[27:0] counter=28'd0;
-    parameter DIVISOR = 28'd2; // 1000Hz
-    always @(posedge clock_in)
-    begin
-        counter <= counter + 28'd1;
-        if(counter >= (DIVISOR-1))
-            counter <= 28'd0;
-        clock_out <= (counter < DIVISOR/2) ? 1'b1 : 1'b0;
-    end
+reg [N-1:0] i_out = {
+3'b111,
+1'b0,
+1'b0,
+1'b0,
+1'b0,
+1'b1,
+1'b1
+};
+assign out = i_out;
+always @(negedge clk) begin
+    if(rst)
+        i_out <= 0;
+    else if(load)
+        i_out <= in;
+end
 endmodule

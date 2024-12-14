@@ -87,14 +87,14 @@ set_property -dict {PACKAGE_PIN D19 IOSTANDARD LVCMOS33} [get_ports reset]
 #set_property -dict { PACKAGE_PIN M18   IOSTANDARD LVCMOS33 } [get_ports { hdmi_tx_sda }]; #IO_L8N_T1_AD10N_35 Sch=HDMI_TX_SDA
 
 ## ChipKit Outer Digital Header
-#set_property -dict { PACKAGE_PIN T14   IOSTANDARD LVCMOS33 } [get_ports { ck_io0  }]; #IO_L5P_T0_34            Sch=CK_IO0
-#set_property -dict { PACKAGE_PIN U12   IOSTANDARD LVCMOS33 } [get_ports { ck_io1  }]; #IO_L2N_T0_34            Sch=CK_IO1
-#set_property -dict { PACKAGE_PIN U13   IOSTANDARD LVCMOS33 } [get_ports { ck_io2  }]; #IO_L3P_T0_DQS_PUDC_B_34 Sch=CK_IO2
-#set_property -dict { PACKAGE_PIN V13   IOSTANDARD LVCMOS33 } [get_ports { ck_io3  }]; #IO_L3N_T0_DQS_34        Sch=CK_IO3
-#set_property -dict { PACKAGE_PIN V15   IOSTANDARD LVCMOS33 } [get_ports { ck_io4  }]; #IO_L10P_T1_34           Sch=CK_IO4
-#set_property -dict { PACKAGE_PIN T15   IOSTANDARD LVCMOS33 } [get_ports { ck_io5  }]; #IO_L5N_T0_34            Sch=CK_IO5
-#set_property -dict { PACKAGE_PIN R16   IOSTANDARD LVCMOS33 } [get_ports { ck_io6  }]; #IO_L19P_T3_34           Sch=CK_IO6
-#set_property -dict { PACKAGE_PIN U17   IOSTANDARD LVCMOS33 } [get_ports { ck_io7  }]; #IO_L9N_T1_DQS_34        Sch=CK_IO7
+#set_property -dict { PACKAGE_PIN T14   IOSTANDARD LVCMOS33 } [get_ports { o_sig_alu_op  }]; #IO_L5P_T0_34            Sch=CK_IO0
+#set_property -dict { PACKAGE_PIN U12   IOSTANDARD LVCMOS33 } [get_ports { o_sig_ar_load  }]; #IO_L2N_T0_34            Sch=CK_IO1
+#set_property -dict { PACKAGE_PIN U13   IOSTANDARD LVCMOS33 } [get_ports { o_sig_ar_mux  }]; #IO_L3P_T0_DQS_PUDC_B_34 Sch=CK_IO2
+#set_property -dict { PACKAGE_PIN V13   IOSTANDARD LVCMOS33 } [get_ports { o_sig_rw_mem  }]; #IO_L3N_T0_DQS_34        Sch=CK_IO3
+#set_property -dict { PACKAGE_PIN V15   IOSTANDARD LVCMOS33 } [get_ports { o_sig_addr_mux  }]; #IO_L10P_T1_34           Sch=CK_IO4
+#set_property -dict { PACKAGE_PIN T15   IOSTANDARD LVCMOS33 } [get_ports { o_sig_load  }]; #IO_L5N_T0_34            Sch=CK_IO5
+#set_property -dict { PACKAGE_PIN R16   IOSTANDARD LVCMOS33 } [get_ports { o_sig_load_ir_1  }]; #IO_L19P_T3_34           Sch=CK_IO6
+#set_property -dict { PACKAGE_PIN U17   IOSTANDARD LVCMOS33 } [get_ports { o_sig_load_ir_2  }]; #IO_L9N_T1_DQS_34        Sch=CK_IO7
 #set_property -dict { PACKAGE_PIN V17   IOSTANDARD LVCMOS33 } [get_ports { ck_io8  }]; #IO_L21P_T3_DQS_34       Sch=CK_IO8
 #set_property -dict { PACKAGE_PIN V18   IOSTANDARD LVCMOS33 } [get_ports { ck_io9  }]; #IO_L21N_T3_DQS_34       Sch=CK_IO9
 #set_property -dict { PACKAGE_PIN T16   IOSTANDARD LVCMOS33 } [get_ports { ck_io10 }]; #IO_L9P_T1_DQS_34        Sch=CK_IO10
@@ -138,12 +138,12 @@ set_property -dict {PACKAGE_PIN D19 IOSTANDARD LVCMOS33} [get_ports reset]
 #set_property -dict { PACKAGE_PIN G19   IOSTANDARD LVCMOS33 } [get_ports { Vaux13_0_v_p }]; #IO_L18P_T2_AD13P_35   Sch=CK_AN5_P   ChipKit pin=A5
 ## ChipKit Outer Analog Header - as Digital I/O
 ## NOTE: The following constraints should be used when using these ports as digital I/O.
-set_property -dict {PACKAGE_PIN Y11 IOSTANDARD LVCMOS33} [get_ports {hehe[0]}]
-set_property -dict {PACKAGE_PIN Y12 IOSTANDARD LVCMOS33} [get_ports {hehe[1]}]
-set_property -dict {PACKAGE_PIN W11 IOSTANDARD LVCMOS33} [get_ports {hehe[2]}]
-set_property -dict {PACKAGE_PIN V11 IOSTANDARD LVCMOS33} [get_ports {hehe[3]}]
-set_property -dict {PACKAGE_PIN T5 IOSTANDARD LVCMOS33} [get_ports {hehe[4]}]
-set_property -dict { PACKAGE_PIN U10   IOSTANDARD LVCMOS33 } [get_ports { hehe[5] }]; #IO_L12N_T1_MRCC_13 Sch=CK_A5
+#set_property -dict {PACKAGE_PIN Y11 IOSTANDARD LVCMOS33} [get_ports {o_mem_in_out}]
+#set_property -dict {PACKAGE_PIN Y12 IOSTANDARD LVCMOS33} [get_ports {o_alu_2_result_reg}]
+set_property -dict {PACKAGE_PIN W11 IOSTANDARD LVCMOS33} [get_ports {o_IR_out}]
+#set_property -dict {PACKAGE_PIN V11 IOSTANDARD LVCMOS33} [get_ports {o_acc_mux_2_AR}]
+#set_property -dict {PACKAGE_PIN T5 IOSTANDARD LVCMOS33} [get_ports {o_AR_2_alu}]
+#set_property -dict { PACKAGE_PIN U10   IOSTANDARD LVCMOS33 } [get_ports { o_result_reg_2_acc_mux}]; #IO_L12N_T1_MRCC_13 Sch=CK_A5
 
 ## ChipKit Inner Analog Header - as Differential Analog Inputs
 ## NOTE: These ports can be used as differential analog inputs with voltages from 0-1.0V (ChipKit analog pins A6-A11) or as digital I/O.
@@ -157,8 +157,8 @@ set_property -dict { PACKAGE_PIN U10   IOSTANDARD LVCMOS33 } [get_ports { hehe[5
 #set_property -dict { PACKAGE_PIN A20   IOSTANDARD LVCMOS33 } [get_ports { Vaux8_0_v_n  }]; #IO_L2N_T0_AD8N_35       Sch=AD8_N    ChipKit pin=A11
 ## ChipKit Inner Analog Header - as Digital I/O
 ## NOTE: The following constraints should be used when using the inner analog header ports as digital I/O.
-set_property -dict { PACKAGE_PIN F19   IOSTANDARD LVCMOS33 } [get_ports { hehe[6]  }]; #IO_L15P_T2_DQS_AD12P_35 Sch=AD12_P
-set_property -dict { PACKAGE_PIN F20   IOSTANDARD LVCMOS33 } [get_ports { hehe[7]  }]; #IO_L15N_T2_DQS_AD12N_35 Sch=AD12_N
+#set_property -dict { PACKAGE_PIN F19   IOSTANDARD LVCMOS33 } [get_ports { hehe[6]  }]; #IO_L15P_T2_DQS_AD12P_35 Sch=AD12_P
+#set_property -dict { PACKAGE_PIN F20   IOSTANDARD LVCMOS33 } [get_ports { alu_output[0]  }]; #IO_L15N_T2_DQS_AD12N_35 Sch=AD12_N
 #set_property -dict { PACKAGE_PIN C20   IOSTANDARD LVCMOS33 } [get_ports { simul_IR_out[7]  }]; #IO_L1P_T0_AD0P_35       Sch=AD0_P
 #set_property -dict { PACKAGE_PIN B20   IOSTANDARD LVCMOS33 } [get_ports { ck_a9  }]; #IO_L1N_T0_AD0N_35       Sch=AD0_N
 #set_property -dict { PACKAGE_PIN B19   IOSTANDARD LVCMOS33 } [get_ports { ck_a10 }]; #IO_L2P_T0_AD8P_35       Sch=AD8_P

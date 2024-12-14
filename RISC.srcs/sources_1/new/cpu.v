@@ -23,15 +23,21 @@
 module cpu(
     input clock_in,
     input reset,
-    output [7:0] hehe
-//    output [4:0] simul_address_mux_2_mem,
-//    output [7:0] simul_mem_in_out,
-//    output simul_sig_rw_mem,
-//    output [7:0] simul_AR_2_alu,
-//    output [4:0] simul_pc_2_address_mux,
+//    output o_mem_in_out,
+//    output o_alu_2_result_reg,
+    output o_IR_out
+//    output o_acc_mux_2_AR,
+//    output o_AR_2_alu,
+//    output o_result_reg_2_acc_mux,
+    
+//    output o_sig_alu_op,
+//    output o_sig_ar_load,
+//    output o_sig_ar_mux ,
+//    output o_sig_rw_mem ,
+//    output o_sig_addr_mux,
+//    output o_sig_load ,
 //    output o_sig_load_ir_1,
-//    output o_sig_load_ir_2,
-//    output [2:0] o_sig_alu_op
+//    output o_sig_load_ir_2
 );
 
 wire clock;
@@ -47,12 +53,9 @@ wire [7:0] acc_mux_2_AR;
 wire [7:0] AR_2_alu;
 wire [7:0] result_reg_2_acc_mux;
 
-wire alu_is_zero_2_control;
 wire is_zero_from_acc;
-
 wire IR_load;
 
-wire counter_clock;
 // control signal wire
 wire [2:0] sig_alu_op;
 wire sig_ar_load;
@@ -62,7 +65,6 @@ wire sig_addr_mux;
 wire sig_load;
 wire sig_load_ir_1;
 wire sig_load_ir_2;
-wire sig_stop_counter;
 
 // EX signal wire
 wire [2:0] sig_ex_alu_op;
@@ -70,46 +72,37 @@ wire sig_ex_ar_load;
 wire sig_ex_ar_mux;
 wire sig_ex_rw_mem;
 wire sig_ex_addr_mux;
-wire sig_ex_load;
+//wire sig_ex_load;
 wire sig_ex_load_ir_1;
 wire sig_ex_load_ir_2;
 
 // WB signal wire
-wire [2:0] sig_wb_alu_op;
+//wire [2:0] sig_wb_alu_op;
 wire sig_wb_ar_load;
 wire sig_wb_ar_mux;
-wire sig_wb_rw_mem;
-wire sig_wb_addr_mux;
-wire sig_wb_load;
-wire sig_wb_load_ir_1;
+//wire sig_wb_rw_mem;
+//wire sig_wb_addr_mux;
+//wire sig_wb_load;
+//wire sig_wb_load_ir_1;
 wire sig_wb_load_ir_2;
 
-// connect to see output
-//assign simul_sig_rw_mem = sig_rw_mem;
+//assign o_mem_in_out = &mem_in_out;
+//assign o_alu_2_result_reg = &alu_2_result_reg;
+assign o_IR_out = &IR_out;
+//assign o_acc_mux_2_AR = &acc_mux_2_AR;
+//assign o_AR_2_alu = &AR_2_alu;
+//assign o_result_reg_2_acc_mux = &result_reg_2_acc_mux;
 
-//assign simul_address_mux_2_mem = address_mux_2_mem;
-//assign simul_mem_in_out = mem_in_out;
-//assign simul_AR_2_alu = AR_2_alu;
-//assign simul_pc_2_address_mux = pc_2_address_mux;
-//assign simul_IR_out = IR_out;
-
-
+//assign o_sig_alu_op = &sig_alu_op;
+//assign o_sig_ar_load = sig_ar_load;
+//assign o_sig_ar_mux = sig_ar_mux;
+//assign o_sig_rw_mem = sig_rw_mem;
+//assign o_sig_addr_mux = sig_addr_mux;
+//assign o_sig_load = sig_load;
 //assign o_sig_load_ir_1 = sig_load_ir_1;
 //assign o_sig_load_ir_2 = sig_load_ir_2;
-//assign o_sig_alu_op = sig_alu_op;
+
 clock_divider CLOCK_DIVIDER(.clock_in(clock_in), .clock_out(clock));
-//assign divided_clock = clock;
-
-
-//counterNbits COUNTER(                   // COUNTER
-//    .out(o_counter_2_pc),
-//    .clk(clock),
-//    .rst(reset),
-//    .load(1'b1),
-//    .preset(5'b0001)
-//);
-
-assign hehe = mem_in_out;
 
 counterNbits COUNTER(                   // COUNTER
     .out(counter_2_pc),
@@ -145,11 +138,11 @@ memory32x8_bi MEM (                     // MEMORY
 
 ALU ALU1 (                              // ALU
     .result(alu_2_result_reg),
-    .is_zero(alu_is_zero_2_control), // dont use
     .inA(mem_in_out),
     .inB(AR_2_alu),
     .opcode(sig_ex_alu_op)
 );
+
 
 registerNbits_neg #(.N(8)) REG_RESULT ( // RESULT REG
     .out(result_reg_2_acc_mux),

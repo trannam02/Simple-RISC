@@ -30,20 +30,19 @@ module counterNbits
     output reg [N-1:0] out = 0
 );
 reg stop = 0;
-always@(posedge clk) 
- 
+always@(posedge clk or posedge load) 
   begin
     if(rst) begin   //Set Counter to Zero
       out <= 0;
       stop <= 0;
     end
    else if(stop)
-           out <= 5'd25;
+           out <= 5'd29;
     else if(load)    //load the counter with preset
       out <= preset;
     else 
       begin
-      if(out >= 5'd25)
+      if(out >= 5'd29)
         stop <= 1;
       else
         out <= out + 1;

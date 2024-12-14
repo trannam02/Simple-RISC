@@ -9,7 +9,7 @@ int main(const int argc,char* argv[]){
     };
     vector<string> lines;
     vector<unsigned char> instructions;
-    vector<unsigned char> datas = {0, 0xFF,0xAA,1};
+    vector<unsigned char> datas = {0, 0xFF,0xAA};
     readFile(argv[1], lines);
     parserLines(lines, instructions);
     writeFile("output.mem", instructions, datas);

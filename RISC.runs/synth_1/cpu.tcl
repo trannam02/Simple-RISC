@@ -17,8 +17,6 @@ proc create_report { reportName command } {
     send_msg_id runtcl-5 warning "$msg"
   }
 }
-set_param synth.incrementalSynthesisCache C:/Users/NAM/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-17120-nam/incrSyn
-set_param xicom.use_bs_reader 1
 set_msg_config -id {Synth 8-256} -limit 10000
 set_msg_config -id {Synth 8-638} -limit 10000
 create_project -in_memory -part xc7z020clg400-1
@@ -38,6 +36,7 @@ read_verilog -library xil_defaultlib {
   C:/Users/NAM/RISC/RISC.srcs/sources_1/new/ALU.v
   C:/Users/NAM/RISC/RISC.srcs/sources_1/new/bufferNbits.v
   C:/Users/NAM/RISC/RISC.srcs/sources_1/new/clock_divider.v
+  C:/Users/NAM/RISC/RISC.srcs/sources_1/new/control_ex_test.v
   C:/Users/NAM/RISC/RISC.srcs/sources_1/new/controller.v
   C:/Users/NAM/RISC/RISC.srcs/sources_1/new/counterNbits.v
   C:/Users/NAM/RISC/RISC.srcs/sources_1/new/memory32x8_bi.v

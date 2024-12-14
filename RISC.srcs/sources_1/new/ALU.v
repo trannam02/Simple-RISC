@@ -14,10 +14,9 @@
 
 module ALU (
     input [7:0] inA,           
-    input [7:0] inB,           
+    input [7:0] inB,
     input [2:0] opcode,        
-    output reg [7:0] result,   
-    output reg is_zero        
+    output reg [7:0] result      
 );
 
 localparam HLT = 3'b000;
@@ -38,13 +37,13 @@ always @(*) begin
         HLT: begin
             result = 8'b00000000;
         end
-        SKZ: begin
-            if (inB == 8'b00000000) begin // nam edit result -> inB
-                is_zero = 1'b1;
-            end else begin
-                is_zero = 1'b0;
-            end
-        end
+//        SKZ: begin
+//            if (inB == 8'b00000000) begin // nam edit result -> inB
+//                is_zero = 1'b1;
+//            end else begin
+//                is_zero = 1'b0;
+//            end
+//        end
         ADD: begin
             result = inA + inB;
         end
@@ -64,11 +63,11 @@ always @(*) begin
             result = inA;
         end
         default: begin
-            result = 8'b00000000;
+            result = 8'b00001111;
         end
     endcase
 
-    is_zero = (inB == 8'b00000000) ? 1'b1 : 1'b0; // nam edit result -> inB
+//    is_zero = (inB == 8'b00000000) ? 1'b1 : 1'b0; // nam edit result -> inB
 end
 
 endmodule
